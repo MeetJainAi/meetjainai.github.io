@@ -119,30 +119,62 @@ main{will-change:transform}
 .flat .m > span,.flat .rise,.flat .reveal{transform:none!important;opacity:1!important}
 .flat [data-words] .wd{opacity:1!important}
 
-/* ═══ 00 · HERO ═══════════════════════════════════════════ */
-.hero{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:150px 0 120px}
+/* ═══ 00 · HERO ═══════════════════════════════════════════
+   The architecture layer sits behind the type and is only drawn
+   where the reader points. The headline steps in toward its own
+   punchline so the last line lands off-axis instead of stacking.
+   ═══════════════════════════════════════════════════════════ */
+.hero{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:150px 0 130px;overflow:hidden}
+.hero__grid{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero__inner{position:relative;z-index:2}
+
 .hero__eyebrow{
-  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(28px,4.5vw,54px);
+  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(26px,4vw,48px);
   font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--dim);text-transform:uppercase;
 }
 .hero__line{
   font-family:var(--serif);font-optical-sizing:auto;
-  font-size:clamp(2.9rem,9.4vw,9.4rem);
-  font-weight:300;line-height:.98;letter-spacing:-.035em;
-  max-width:16ch;
+  font-size:clamp(2.9rem,9.6vw,9.6rem);
+  font-weight:300;line-height:.96;letter-spacing:-.038em;
 }
-.hero__line em{font-style:italic;font-weight:400;color:var(--accent)}
+/* a deliberate stagger — the sentence walks into its own turn */
+.hero__line .l2{margin-left:clamp(0px,3.2vw,72px)}
+.hero__line .l3{margin-left:clamp(0px,7.4vw,164px)}
+.hero__line em{
+  font-style:italic;font-weight:400;color:var(--accent);
+  /* the accent line is the only lit thing on the screen */
+  text-shadow:0 0 44px color-mix(in srgb,var(--accent) 34%,transparent);
+}
 .hero__sub{
-  margin-top:clamp(26px,3.6vw,44px);max-width:44ch;color:var(--dim);
-  font-size:clamp(1rem,1.25vw,1.15rem);line-height:1.75;
+  margin-top:clamp(30px,4vw,54px);margin-left:clamp(0px,7.4vw,164px);max-width:42ch;color:var(--dim);
+  font-size:clamp(1rem,1.22vw,1.12rem);line-height:1.75;
 }
-.hero__cue{
-  position:absolute;left:var(--gut);bottom:34px;display:flex;align-items:center;gap:12px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
+
+.hero__foot{
+  position:absolute;left:0;right:0;bottom:30px;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding-inline:var(--gut);
+}
+.hero__cue,.hero__hint{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
 }
 .hero__cue i{display:block;width:54px;height:1px;background:var(--rule);position:relative;overflow:hidden}
 .hero__cue i::after{content:"";position:absolute;inset:0;width:40%;background:var(--accent);animation:sweep 2.4s var(--ease) infinite}
 @keyframes sweep{0%{transform:translateX(-110%)}100%{transform:translateX(300%)}}
+
+/* the hint retires the moment the reader finds it themselves */
+.hero__hint{opacity:0;animation:hintIn .9s var(--ease) 2.4s forwards}
+.hero__hint i{width:7px;height:7px;border-radius:50%;border:1px solid var(--accent);
+  box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent);animation:ping 2.6s var(--ease) infinite}
+@keyframes hintIn{to{opacity:1}}
+@keyframes ping{70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
+@media (hover:none){.hero__hint{display:none}}
+
+/* GSAP owns the hero entrance when it is present */
+.gsap .hero .m > span{transition:none}
 
 /* ═══ 01 · HELD BEAT ══════════════════════════════════════ */
 .beat{
