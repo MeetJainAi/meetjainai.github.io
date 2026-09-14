@@ -112,6 +112,19 @@ All four faces are **self-hosted** (`fonts/`, latin subsets, ~180 KB total)
 and the two used above the fold are preloaded. No third-party request stands
 between the reader and the first word.
 
+## Identity
+
+A mark, not a logo-shaped afterthought: a circle crossed by a horizon that runs
+past it on both sides — a sun on a horizon, and a node on a wire. Its fill level
+is bound to the same daylight value that drives the palette, so the sun inside
+the mark **rises from 0% to 100% as you read the page**. It appears in the HUD
+and again as the footer ornament.
+
+Around it, a magazine structure: outlined folio numerals at 29vw bled off the
+left edge of every chapter, project numerals riding over their own titles, and a
+closing wordmark set deliberately wider than the viewport so it is cropped at
+both ends.
+
 ## Colour
 
 One accent family, not five. It travels cool steel → brass → bronze as the
