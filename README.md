@@ -58,10 +58,29 @@ No build step. Static HTML, CSS and vanilla JS on GitHub Pages.
 ```
 index.html
 css/style.css
-js/main.js        palette engine, narrative clock, reveals, counters
+js/main.js        palette engine, narrative clock, motion system
 js/sky.js         stars that go out as the sun comes up
 js/vendor/        GSAP + ScrollTrigger, vendored — no runtime CDN dependency
 ```
+
+## Motion
+
+Scroll position drives everything, so the reader is always the one doing it:
+
+- **The architecture diagrams build themselves.** Nodes land, their edges
+  draw behind them, then data starts moving along the paths. Scrubbed to
+  scroll, with the diagram column sticky so it stays in view while the prose
+  scrolls past it.
+- **The crossing is drawn by the reader.** The arc, the distance counting to
+  12,164 km, and Toronto's arrival are all on one scrubbed timeline.
+- **Three parallax planes** — starfield, headline, diagrams — so the page has
+  depth rather than one flat surface.
+- **The timeline draws its own spine** and each stop lights as it passes the
+  reading line.
+- **The technology rail** drifts on its own and is pushed by scroll velocity,
+  decaying back to a drift when you stop.
+- **Momentum skew** under 1.4°, decayed on the ticker so the page always
+  settles back to true.
 
 ```bash
 python3 -m http.server 8000   # → http://localhost:8000
