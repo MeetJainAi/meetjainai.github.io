@@ -125,7 +125,7 @@
       <p class="head__note">Nine years, two countries, one restart.</p>
     </header>
 
-    <ol class="track">
+    <ol class="track"><div class="track__fill" aria-hidden="true"></div>
       <li class="stop reveal">
         <span class="stop__year">2016<i>—</i>20</span>
         <div class="stop__body">
@@ -190,64 +190,50 @@
     </header>
   </div>
 
-  <article class="piece reveal">
+  <article class="piece">
     <div class="wrap piece__grid">
-      <div class="piece__meta">
-        <span class="piece__n">01</span>
-        <ul class="chips"><li>Lambda</li><li>S3</li><li>Airflow</li><li>EC2</li><li>Redshift</li><li>QuickSight</li></ul>
-      </div>
       <div class="piece__main">
+        <span class="piece__n">01</span>
         <h3 class="piece__title">A pipeline that stopped<br/>needing a person</h3>
-        <p class="piece__lede">Real-estate market data arrived from Zillow's API in real time and had to become something a stakeholder could act on before it went stale.</p>
+        <p class="piece__lede">Real-estate market data arrived from Zillow&rsquo;s API in real time and had to become something a stakeholder could act on before it went stale.</p>
         <p>Lambda handles extraction, S3 stages it across raw, refined and curated zones, Airflow on EC2 orchestrates the graph, Redshift warehouses it, and QuickSight puts it in front of the people deciding. Once it was running, nobody touched it.</p>
-        <dl class="figs">
-          <div><dt>99.8%</dt><dd>pipeline reliability</dd></div>
-          <div><dt>Zero</dt><dd>manual data handling</dd></div>
-        </dl>
+        <ul class="chips"><li>Lambda</li><li>S3</li><li>Airflow</li><li>EC2</li><li>Redshift</li><li>QuickSight</li></ul>
+        <dl class="figs"><div><dt>99.8%</dt><dd>pipeline reliability</dd></div><div><dt>Zero</dt><dd>manual data handling</dd></div></dl>
       </div>
+      <div class="piece__viz"><div class="piece__viz-in"><svg class="diagram" viewBox="0 0 420 476" role="img" aria-label="Zillow API into Lambda, S3 raw refined curated, Glue, Redshift, QuickSight, orchestrated by Airflow on EC2"><g class="edges"><path class="e" id="e0" d="M150 56 V96"/><path class="e" id="e1" d="M150 136 V176"/><path class="e" id="e2" d="M150 220 V256"/><path class="e" id="e3" d="M150 296 V336"/><path class="e" id="e4" d="M150 376 V416"/><path class="e e--ghost" id="e90" d="M300 198 H275 V116 H250"/><path class="e e--ghost" id="e91" d="M300 198 H275 V276 H250"/></g><g class="flows"><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.0s"><mpath href="#e0"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.35s"><mpath href="#e1"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#e2"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.0499999999999998s"><mpath href="#e3"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s"><mpath href="#e4"/></animateMotion></circle></g><g class="nodes"><g class="n "><rect x="50" y="16" width="200" height="40" rx="7"/><text x="150" y="34">Zillow API</text><text class="sub" x="150" y="49">source</text></g><g class="n "><rect x="50" y="96" width="200" height="40" rx="7"/><text x="150" y="114">Lambda</text><text class="sub" x="150" y="129">extract</text></g><g class="n "><rect x="50" y="176" width="200" height="44" rx="7"/><text x="150" y="196">S3</text><text class="sub" x="150" y="211">raw › refined › curated</text></g><g class="n "><rect x="50" y="256" width="200" height="40" rx="7"/><text x="150" y="274">Glue</text><text class="sub" x="150" y="289">transform</text></g><g class="n "><rect x="50" y="336" width="200" height="40" rx="7"/><text x="150" y="354">Redshift</text><text class="sub" x="150" y="369">warehouse</text></g><g class="n n--end"><rect x="50" y="416" width="200" height="40" rx="7"/><text x="150" y="434">QuickSight</text><text class="sub" x="150" y="449">decisions</text></g><g class="n n--side"><rect x="300" y="176" width="110" height="44" rx="7"/><text x="355" y="196">Airflow</text><text class="sub" x="355" y="211">on EC2</text></g></g></svg></div></div>
     </div>
   </article>
-
-  <article class="piece reveal">
+  <article class="piece piece--flip">
     <div class="wrap piece__grid">
-      <div class="piece__meta">
-        <span class="piece__n">02</span>
-        <ul class="chips"><li>Terraform</li><li>GitHub Actions</li><li>Versioning</li><li>Infra testing</li></ul>
-      </div>
       <div class="piece__main">
+        <span class="piece__n">02</span>
         <h3 class="piece__title">A module library<br/>people actually adopted</h3>
         <p class="piece__lede">Every team was provisioning the same resources slightly differently, and every difference was a future incident.</p>
         <p>I built a versioned Terraform module library with documentation worth reading and a CI pipeline that tests infrastructure code before it reaches an account. The adoption was the hard part; the modules were the easy part.</p>
-        <dl class="figs">
-          <div><dt>50%</dt><dd>faster deployment</dd></div>
-          <div><dt>40%</dt><dd>fewer configuration errors</dd></div>
-        </dl>
+        <ul class="chips"><li>Terraform</li><li>GitHub Actions</li><li>Versioning</li><li>Infra testing</li></ul>
+        <dl class="figs"><div><dt>50%</dt><dd>faster deployment</dd></div><div><dt>40%</dt><dd>fewer configuration errors</dd></div></dl>
       </div>
+      <div class="piece__viz"><div class="piece__viz-in"><svg class="diagram" viewBox="0 0 420 396" role="img" aria-label="A versioned Terraform module passing a CI gate then provisioning dev, stage and prod against locked state"><g class="edges"><path class="e" id="e0" d="M210 56 V106"/><path class="e" id="e1" d="M210 146 V180 H65 V216"/><path class="e" id="e2" d="M210 146 V216"/><path class="e" id="e3" d="M210 146 V180 H355 V216"/><path class="e" id="e4" d="M65 256 V292 H210 V326"/><path class="e" id="e5" d="M210 256 V326"/><path class="e" id="e6" d="M355 256 V292 H210 V326"/></g><g class="flows"><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.0s"><mpath href="#e0"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.35s"><mpath href="#e1"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#e2"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.0499999999999998s"><mpath href="#e3"/></animateMotion></circle></g><g class="nodes"><g class="n "><rect x="110" y="16" width="200" height="40" rx="7"/><text x="210" y="34">Module</text><text class="sub" x="210" y="49">versioned · documented</text></g><g class="n "><rect x="110" y="106" width="200" height="40" rx="7"/><text x="210" y="124">CI gate</text><text class="sub" x="210" y="139">plan + test</text></g><g class="n "><rect x="10" y="216" width="110" height="40" rx="7"/><text x="65" y="240">dev</text></g><g class="n "><rect x="155" y="216" width="110" height="40" rx="7"/><text x="210" y="240">stage</text></g><g class="n "><rect x="300" y="216" width="110" height="40" rx="7"/><text x="355" y="240">prod</text></g><g class="n n--end"><rect x="110" y="326" width="200" height="40" rx="7"/><text x="210" y="344">State</text><text class="sub" x="210" y="359">locked · remote</text></g></g></svg></div></div>
     </div>
   </article>
-
-  <article class="piece reveal">
+  <article class="piece">
     <div class="wrap piece__grid">
-      <div class="piece__meta">
-        <span class="piece__n">03</span>
-        <ul class="chips"><li>Lambda</li><li>DynamoDB</li><li>CloudWatch</li><li>QuickSight</li><li>FinOps</li></ul>
-      </div>
       <div class="piece__main">
+        <span class="piece__n">03</span>
         <h3 class="piece__title">The system that reads<br/>the invoice for you</h3>
         <p class="piece__lede">Cloud spend is only mysterious until somebody makes every dollar traceable to an owner.</p>
         <p>Lambda and CloudWatch stream utilisation into DynamoDB, tagging is automatically enforced so nothing is unattributable, QuickSight shows the trend, and a configurable alerting layer catches anomalous spend well before the bill arrives.</p>
-        <dl class="figs">
-          <div><dt>30%</dt><dd>infrastructure cost cut</dd></div>
-          <div><dt>None</dt><dd>performance traded away</dd></div>
-        </dl>
+        <ul class="chips"><li>Lambda</li><li>DynamoDB</li><li>CloudWatch</li><li>QuickSight</li><li>FinOps</li></ul>
+        <dl class="figs"><div><dt>30%</dt><dd>infrastructure cost cut</dd></div><div><dt>None</dt><dd>performance traded away</dd></div></dl>
       </div>
+      <div class="piece__viz"><div class="piece__viz-in"><svg class="diagram" viewBox="0 0 420 366" role="img" aria-label="CloudWatch metrics and tag enforcement feeding a Lambda analyser, into DynamoDB, out to alerts and a dashboard"><g class="edges"><path class="e" id="e0" d="M100 56 V90 H210 V116"/><path class="e" id="e1" d="M320 56 V90 H210 V116"/><path class="e" id="e2" d="M210 160 V206"/><path class="e" id="e3" d="M210 246 V280 H100 V306"/><path class="e" id="e4" d="M210 246 V280 H320 V306"/></g><g class="flows"><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.0s"><mpath href="#e0"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.35s"><mpath href="#e1"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#e2"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.0499999999999998s"><mpath href="#e3"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s"><mpath href="#e4"/></animateMotion></circle></g><g class="nodes"><g class="n "><rect x="10" y="16" width="180" height="40" rx="7"/><text x="100" y="34">CloudWatch</text><text class="sub" x="100" y="49">utilisation</text></g><g class="n "><rect x="230" y="16" width="180" height="40" rx="7"/><text x="320" y="34">Tag policy</text><text class="sub" x="320" y="49">enforced</text></g><g class="n "><rect x="110" y="116" width="200" height="44" rx="7"/><text x="210" y="136">Lambda</text><text class="sub" x="210" y="151">analyser</text></g><g class="n "><rect x="110" y="206" width="200" height="40" rx="7"/><text x="210" y="224">DynamoDB</text><text class="sub" x="210" y="239">attribution</text></g><g class="n n--end"><rect x="20" y="306" width="160" height="40" rx="7"/><text x="100" y="324">Alerts</text><text class="sub" x="100" y="339">anomaly</text></g><g class="n n--end"><rect x="240" y="306" width="160" height="40" rx="7"/><text x="320" y="324">QuickSight</text><text class="sub" x="320" y="339">trend</text></g></g></svg></div></div>
     </div>
   </article>
 </section>
 
 <!-- ══ 05 · WHAT IT MOVED — peak two ════════════════════════ -->
 <section class="moved" id="moved" data-act="dawn">
-  <div class="wrap">
+  <div class="wrap wrap--wide">
     <header class="head head--center">
       <span class="tag">Chapter four</span>
       <h2 class="head__title"><span class="m"><span>What it moved</span></span></h2>
@@ -285,6 +271,12 @@
       <div class="col reveal"><h3>Delivery</h3><p>CI/CD · GitHub Actions · Jenkins · Docker · Kubernetes · Infrastructure testing</p></div>
       <div class="col reveal"><h3>Languages</h3><p>Python · SQL · PySpark · Bash · Shell</p></div>
       <div class="col reveal"><h3>Architecture</h3><p>System design · Cloud migration · Performance optimisation · Cost management · Event-driven design</p></div>
+    </div>
+
+    <div class="rail" aria-hidden="true">
+      <div class="rail__track">
+        <span>Lambda</span><span>Terraform</span><span>Airflow</span><span>Redshift</span><span>Glue</span><span>Step Functions</span><span>DynamoDB</span><span>PySpark</span><span>CloudFormation</span><span>API Gateway</span><span>QuickSight</span><span>S3</span><span>EC2</span><span>IAM</span><span>CloudWatch</span>
+      </div>
     </div>
 
     <div class="certs reveal">

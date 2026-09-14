@@ -227,6 +227,181 @@
     dots.forEach(function (d, i) { d.classList.toggle('on', i === active); });
   }
 
+
+  /* ─────────────────────────────────────────────
+     8. MOTION SYSTEM  (GSAP · ScrollTrigger)
+
+     Everything here is an enhancement layered on top of a page
+     that already reads without it. Each block bails out cleanly
+     if GSAP is absent or the reader asked for less motion.
+     ───────────────────────────────────────────── */
+  var hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+  if (hasGSAP && !reduce) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* 8a · the architecture diagrams build themselves as you arrive.
+       Nodes land, their edges draw behind them, then the data starts
+       moving. Scrubbed, so the reader is doing the building. */
+    gsap.utils.toArray('.diagram').forEach(function (svg) {
+      var nodes = svg.querySelectorAll('.n');
+      var edges = svg.querySelectorAll('.e');
+      var piece = svg.closest('.piece');
+      if (!nodes.length) return;
+
+      gsap.set(nodes, { opacity: 0, scale: 0.88, transformOrigin: '50% 50%' });
+      edges.forEach(function (e) {
+        var L;
+        try { L = e.getTotalLength(); } catch (err) { L = 400; }
+        gsap.set(e, { strokeDasharray: L, strokeDashoffset: L });
+      });
+
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: piece,
+          start: 'top 72%',
+          end: 'bottom 82%',
+          scrub: 0.55,
+          onEnter:     function () { svg.classList.add('built'); },
+          onLeaveBack: function () { svg.classList.remove('built'); }
+        }
+      });
+      tl.to(nodes, { opacity: 1, scale: 1, duration: 1, stagger: 0.55, ease: 'back.out(1.7)' }, 0)
+        .to(edges, { strokeDashoffset: 0, duration: 1.1, stagger: 0.55, ease: 'none' }, 0.3);
+    });
+
+    /* 8b · the crossing, scrubbed — the arc is drawn by the reader,
+       the distance counts up with it, and Toronto lands at the end. */
+    var arcPath = document.querySelector('.arc__path');
+    if (arcPath) {
+      var dist = document.querySelector('.arc__dist');
+      var ptB  = document.querySelector('.arc__pt--b');
+      var ptA  = document.querySelector('.arc__pt--a');
+      var prog = { v: 0 };
+      document.querySelector('.arc').classList.add('scrubbed');
+      gsap.set(arcPath, { strokeDashoffset: 1 });
+      if (dist) dist.textContent = '0 km';
+      gsap.set([ptB], { opacity: 0 });
+
+      gsap.timeline({
+        scrollTrigger: { trigger: '.crossing', start: 'top 78%', end: 'bottom 62%', scrub: 0.6 }
+      })
+      .fromTo(ptA, { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.4 }, 0)
+      .to(arcPath, { strokeDashoffset: 0, duration: 3, ease: 'none' }, 0.2)
+      .to(prog, {
+        v: 12164, duration: 3, ease: 'none',
+        onUpdate: function () {
+          if (dist) dist.textContent = Math.round(prog.v).toLocaleString('en-US') + ' km';
+        }
+      }, 0.2)
+      .to(ptB, { opacity: 1, duration: 0.5 }, 2.9);
+    }
+
+    /* 8c · depth. Three planes moving at different rates so the page
+       has a floor and a ceiling instead of one flat surface. */
+    gsap.to('.stars', {
+      yPercent: 22, ease: 'none',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.1 }
+    });
+    gsap.to('.hero__line', {
+      yPercent: -16, opacity: 0.25, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.7 }
+    });
+    gsap.to('.hero__sub', {
+      yPercent: -42, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.5 }
+    });
+    gsap.utils.toArray('.piece__viz-in').forEach(function (v) {
+      gsap.fromTo(v, { yPercent: 6 }, {
+        yPercent: -6, ease: 'none',
+        scrollTrigger: { trigger: v.closest('.piece'), start: 'top bottom', end: 'bottom top', scrub: 1 }
+      });
+    });
+
+    /* 8d · the timeline draws its own spine, and each stop lights
+       as it passes the reading line. */
+    var fill = document.querySelector('.track__fill');
+    if (fill) {
+      gsap.to(fill, {
+        height: '100%', ease: 'none',
+        scrollTrigger: { trigger: '.track', start: 'top 62%', end: 'bottom 72%', scrub: 0.4 }
+      });
+    }
+    gsap.utils.toArray('.stop').forEach(function (st) {
+      ScrollTrigger.create({
+        trigger: st, start: 'top 64%', end: 'bottom 40%',
+        onEnter:     function () { st.classList.add('lit'); },
+        onEnterBack: function () { st.classList.add('lit'); },
+        onLeaveBack: function () { st.classList.remove('lit'); }
+      });
+    });
+
+    /* 8e · headline entrances with real weight — character stagger
+       out of a blur, not a uniform fade. */
+    gsap.utils.toArray('.head__title .m > span, .contact__line .m > span').forEach(function (el) {
+      gsap.fromTo(el, { yPercent: 118, rotate: 1.4 }, {
+        yPercent: 0, rotate: 0, duration: 1.25, ease: 'expo.out',
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+      });
+    });
+
+    /* 8f · the figures arrive on a diagonal, largest first. */
+    gsap.utils.toArray('.fig').forEach(function (f, i) {
+      gsap.fromTo(f, { opacity: 0, y: 40, scale: 0.97 }, {
+        opacity: 1, y: 0, scale: 1, duration: 1, ease: 'expo.out', delay: (i % 3) * 0.07,
+        scrollTrigger: { trigger: f, start: 'top 88%', once: true }
+      });
+    });
+
+    /* 8g · one velocity source, decayed on the ticker.
+
+       ScrollTrigger.onUpdate only fires *while* the page is moving, so
+       reading velocity there alone leaves the skew stuck at whatever the
+       last frame saw — the whole page sits permanently crooked. The
+       ticker runs every frame, so decay the velocity there and let both
+       the skew and the rail settle back to rest on their own. */
+    var scrollVel = 0;
+    var skewSetter = gsap.quickTo('main', 'skewY', { duration: 0.45, ease: 'power3' });
+    var clampSkew  = gsap.utils.clamp(-1.4, 1.4);
+
+    ScrollTrigger.create({
+      onUpdate: function (self) { scrollVel = self.getVelocity(); }
+    });
+
+    var track = document.querySelector('.rail__track');
+    var half = 0, railX = 0, base = -0.32;
+    if (track) {
+      track.innerHTML = track.innerHTML + track.innerHTML;   // seamless wrap
+      var measureRail = function () { half = track.scrollWidth / 2; };
+      measureRail();
+      ScrollTrigger.addEventListener('refresh', measureRail);
+    }
+
+    gsap.ticker.add(function () {
+      scrollVel *= 0.9;
+      if (Math.abs(scrollVel) < 1) scrollVel = 0;
+
+      // momentum skew, kept under 1.4deg — felt, not seen
+      skewSetter(clampSkew(scrollVel / -420));
+
+      // the rail drifts on its own and is pushed by the reader
+      if (track && half) {
+        railX += base + gsap.utils.clamp(-6, 6, scrollVel * 0.0016);
+        if (railX <= -half) railX += half;
+        if (railX > 0) railX -= half;
+        track.style.transform = 'translate3d(' + railX.toFixed(2) + 'px,0,0)';
+      }
+    });
+
+    ScrollTrigger.addEventListener('refreshInit', measure);
+    setTimeout(function () { ScrollTrigger.refresh(); }, 500);
+  } else {
+    // no GSAP (or reduced motion): show the diagrams complete and still
+    document.querySelectorAll('.diagram').forEach(function (d) { d.classList.add('built'); });
+    var f2 = document.querySelector('.track__fill');
+    if (f2) f2.style.height = '100%';
+    document.querySelectorAll('.stop').forEach(function (s2) { s2.classList.add('lit'); });
+  }
+
   /* ─────────────────────────────────────────────
      7. LOOP
      ───────────────────────────────────────────── */
