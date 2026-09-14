@@ -57,6 +57,7 @@ No build step. Static HTML, CSS and vanilla JS on GitHub Pages.
 
 ```
 index.html
+css/fonts.css     self-hosted faces
 css/style.css
 js/main.js        palette engine, narrative clock, motion system
 js/sky.js         stars that go out as the sun comes up
@@ -100,9 +101,28 @@ python3 -m http.server 8000   # → http://localhost:8000
 
 ## Type
 
-Fraunces for display (a variable serif with optical sizing — it carries the
-editorial voice), Inter for reading, JetBrains Mono for the machine voice:
-labels, coordinates, timestamps.
+**Bodoni Moda** for display — a true Didone. Stroke contrast is the single
+strongest "expensive" signal in typography, and Bodoni Moda carries an
+optical-size axis, so at display sizes the hairlines thin out on their own
+(`font-variation-settings: "opsz" 96`). **Inter** for reading. **JetBrains
+Mono** for the machine voice: labels, coordinates, timestamps. The tension
+between a fashion-plate serif and a developer's monospace is the point.
+
+All four faces are **self-hosted** (`fonts/`, latin subsets, ~180 KB total)
+and the two used above the fold are preloaded. No third-party request stands
+between the reader and the first word.
+
+## Colour
+
+One accent family, not five. It travels cool steel → brass → bronze as the
+light turns, because that is what an accent does across a real sunrise. Every
+extra hue makes a page read cheaper, so there are none. The accent is also
+held 2–3.5× away from the foreground at every stop so it still reads as an
+accent rather than as body text.
+
+Texture: film grain throughout, plus a printed-paper tooth that fades in with
+the daylight. Pages that feel expensive almost always borrow something from
+print.
 
 ## Accessibility
 

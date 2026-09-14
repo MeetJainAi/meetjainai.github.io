@@ -25,11 +25,15 @@
   // Each act is a complete palette. Contrast was checked at every
   // stop: fg-on-bg never drops below 11:1, dim-on-bg never below 4.6:1.
   var ACTS = {
-    night: { bg:[  5,  7, 12], fg:[237,239,245], dim:[133,143,166], acc:[110,127,243], rule:0.10, glow:0 },
-    deep:  { bg:[  9, 10, 22], fg:[234,237,245], dim:[131,140,164], acc:[138,124,240], rule:0.11, glow:0 },
-    dusk:  { bg: [ 20, 14, 26], fg:[240,234,238], dim:[150,136,156], acc:[199,110,140], rule:0.12, glow:0.15 },
-    dawn:  { bg: [ 38, 20, 25], fg:[251,237,230], dim:[176,146,135], acc:[232,134, 60], rule:0.14, glow:0.35 },
-    day:   { bg:[245,240,230], fg:[ 23, 19, 16], dim:[107, 97, 87], acc:[194, 90, 30], rule:0.13, glow:1, dark:true }
+    // One accent family, travelling cool steel → brass → bronze as the
+    // light turns. Five competing hues read cheap; a single hue moving
+    // in temperature reads like an actual sunrise.
+    // Contrast checked at every stop: fg/bg never below 11:1, dim never below 4.6:1.
+    night: { bg:[  6,  8, 14], fg:[237,239,245], dim:[132,142,163], acc:[116,151,208], rule:0.10, glow:0 },
+    deep:  { bg:[ 10, 12, 19], fg:[236,237,243], dim:[136,143,160], acc:[146,159,205], rule:0.11, glow:0 },
+    dusk:  { bg:[ 20, 17, 21], fg:[241,236,236], dim:[152,141,142], acc:[199,159,134], rule:0.12, glow:0.15 },
+    dawn:  { bg:[ 36, 25, 22], fg:[250,240,231], dim:[178,152,135], acc:[214,163, 92], rule:0.15, glow:0.35 },
+    day:   { bg:[243,239,231], fg:[ 24, 20, 17], dim:[108, 99, 88], acc:[150, 96, 40], rule:0.14, glow:1, dark:true }
   };
 
   // Narrative stops. `at` is a fraction through the named section —

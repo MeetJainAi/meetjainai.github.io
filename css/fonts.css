@@ -1,0 +1,32 @@
+/* Self-hosted so the type is never at the mercy of a third party,
+   and so there is no render-blocking request before the first word
+   of the page can be read. Latin subsets only. */
+
+@font-face{
+  font-family:'Bodoni Moda';
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+  src:url('../fonts/bodoni-roman.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Bodoni Moda';
+  font-style:italic;
+  font-weight:400 600;
+  font-display:swap;
+  src:url('../fonts/bodoni-italic.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Inter';
+  font-style:normal;
+  font-weight:300 600;
+  font-display:swap;
+  src:url('../fonts/inter.woff2') format('woff2');
+}
+@font-face{
+  font-family:'JetBrains Mono';
+  font-style:normal;
+  font-weight:400 500;
+  font-display:swap;
+  src:url('../fonts/jbmono.woff2') format('woff2');
+}

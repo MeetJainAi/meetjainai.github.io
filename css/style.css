@@ -1,6 +1,11 @@
 /* ═══════════════════════════════════════════════════════════
    MEET SHAH — "The Long Way"
 
+   Palette discipline: one accent family, not five. It travels
+   cool steel → brass → bronze as the light turns, because that is
+   what an accent does across a real sunrise. Every extra hue makes
+   a page read cheaper, so there are none.
+
    Design thesis: the story is dark → light, so the page is too.
    Every colour below is a live custom property interpolated from
    scroll position (see js/main.js). Nothing here is a fixed hue
@@ -20,7 +25,10 @@
   --accent:#6E7FF3;
   --glow:0;            /* 0 night → 1 day, used for warmth effects */
 
-  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  /* A Didone. Stroke contrast is the single strongest "expensive"
+     signal in type, and Bodoni Moda carries an optical-size axis —
+     at display sizes the hairlines thin out on their own. */
+  --serif:"Bodoni Moda",Didot,"Bodoni MT",Georgia,serif;
   --sans:"Inter",system-ui,-apple-system,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
 
@@ -57,7 +65,7 @@ main{will-change:transform}
 
 /* ── atmosphere ──────────────────────────────────────────── */
 .grain{
-  position:fixed;inset:-200%;z-index:60;pointer-events:none;opacity:.22;
+  position:fixed;inset:-200%;z-index:60;pointer-events:none;opacity:.3;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:grain 8s steps(6) infinite;mix-blend-mode:overlay;
 }
@@ -66,6 +74,16 @@ main{will-change:transform}
   50%{transform:translate(-3%,5%)}66%{transform:translate(5%,2%)}83%{transform:translate(-2%,-5%)}100%{transform:translate(0,0)}
 }
 .stars{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+
+/* Printed-paper tooth, faded in with the daylight. Digital pages that
+   feel expensive almost always borrow something from print. */
+.paper{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:calc(var(--glow) * .5);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='4' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
 
 /* ── HUD ─────────────────────────────────────────────────── */
 .hud{
@@ -135,8 +153,9 @@ main{will-change:transform}
 }
 .hero__line{
   font-family:var(--serif);font-optical-sizing:auto;
-  font-size:clamp(2.9rem,9.6vw,9.6rem);
-  font-weight:300;line-height:.96;letter-spacing:-.038em;
+  font-variation-settings:"opsz" 96;      /* push the contrast axis */
+  font-size:clamp(3rem,10.2vw,10.4rem);
+  font-weight:400;line-height:.94;letter-spacing:-.028em;
 }
 /* a deliberate stagger — the sentence walks into its own turn */
 .hero__line .l2{margin-left:clamp(0px,3.2vw,72px)}
@@ -182,8 +201,8 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
   padding:clamp(70px,12vw,150px) var(--gut);
 }
 .beat__line{
-  font-family:var(--serif);font-weight:300;
-  font-size:clamp(1.6rem,4.4vw,3.6rem);line-height:1.22;letter-spacing:-.03em;
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-size:clamp(1.7rem,4.6vw,3.8rem);line-height:1.24;letter-spacing:-.022em;
   max-width:22ch;text-align:center;text-wrap:balance;
 }
 
@@ -196,8 +215,9 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .head--center{max-width:none;text-align:center}
 .head--center .tag{color:var(--accent)}
 .head__title{
-  font-family:var(--serif);font-weight:300;
-  font-size:clamp(2.1rem,6.4vw,5.4rem);line-height:1.02;letter-spacing:-.035em;
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-variation-settings:"opsz" 80;
+  font-size:clamp(2.2rem,6.8vw,5.8rem);line-height:1;letter-spacing:-.028em;
 }
 .head__note{margin-top:18px;color:var(--dim);max-width:38ch}
 .head--center .head__note{margin-inline:auto}
@@ -263,7 +283,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .crossing__copy{max-width:56ch;margin-left:auto}
 .crossing__copy p{margin-bottom:1.5em;color:var(--dim)}
 .crossing__copy .lede{
-  font-family:var(--serif);font-weight:300;color:var(--fg);
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;color:var(--fg);
   font-size:clamp(1.35rem,2.9vw,2.1rem);line-height:1.32;letter-spacing:-.025em;margin-bottom:1em;
 }
 
@@ -296,7 +316,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
   padding:3px 9px;border-radius:3px;margin-bottom:14px;
 }
 .stop__flag--quiet{color:var(--dim);border-color:var(--rule)}
-.stop h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.25rem,2.5vw,1.85rem);line-height:1.2;letter-spacing:-.025em}
+.stop h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,2.5vw,1.85rem);line-height:1.2;letter-spacing:-.025em}
 .stop__org{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);margin:8px 0 16px}
 .stop__body > p:last-of-type{color:var(--dim);max-width:56ch}
 @media (max-width:760px){.stop{grid-template-columns:1fr;gap:10px}}
@@ -313,13 +333,13 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .piece--flip .piece__viz{order:1}
 
 .piece__n{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--accent);margin-bottom:18px}
-.piece__title{font-family:var(--serif);font-weight:300;
-  font-size:clamp(1.8rem,4.4vw,3.4rem);line-height:1.06;letter-spacing:-.035em;margin-bottom:24px}
+.piece__title{font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-size:clamp(1.9rem,4.6vw,3.6rem);line-height:1.04;letter-spacing:-.026em;margin-bottom:24px}
 .piece__lede{font-size:clamp(1.05rem,1.5vw,1.28rem);line-height:1.6;max-width:44ch;margin-bottom:1.1em}
 .piece__main > p:not(.piece__lede){color:var(--dim);max-width:52ch}
 .piece__main .chips{margin-top:24px}
 .figs{display:flex;flex-wrap:wrap;gap:clamp(26px,4.4vw,64px);margin-top:clamp(28px,3.6vw,44px)}
-.figs dt{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1;letter-spacing:-.04em;color:var(--accent)}
+.figs dt{font-family:var(--serif);font-weight:400;font-optical-sizing:auto;font-size:clamp(2.1rem,4.2vw,3.2rem);line-height:1;letter-spacing:-.03em;color:var(--accent)}
 .figs dd{margin:8px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 
 .piece__viz{position:sticky;top:16vh}
@@ -354,8 +374,10 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .figures{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border-block:1px solid var(--rule)}
 .fig{background:var(--bg);padding:clamp(30px,4.4vw,58px) clamp(20px,2.6vw,34px);display:flex;flex-direction:column;gap:12px}
 .fig b{
-  font-family:var(--serif);font-weight:300;font-size:clamp(3rem,7.4vw,6rem);line-height:.9;
-  letter-spacing:-.05em;color:var(--accent);font-variant-numeric:tabular-nums;
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(3.2rem,8vw,6.6rem);line-height:.88;
+  letter-spacing:-.036em;color:var(--accent);font-variant-numeric:tabular-nums;
 }
 .fig span{color:var(--dim);font-size:.94rem;line-height:1.55;max-width:24ch}
 @media (max-width:900px){.figures{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -397,7 +419,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .certs{margin-top:clamp(48px,6vw,88px);padding-top:clamp(32px,4vw,52px);border-top:1px solid var(--rule)}
 .certs__label{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
 .certs ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:26px 32px;margin-top:26px}
-.certs b{display:block;font-family:var(--serif);font-weight:400;font-size:1.15rem;letter-spacing:-.02em}
+.certs b{display:block;font-family:var(--serif);font-weight:500;font-size:1.15rem;letter-spacing:-.02em}
 .certs span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);margin-top:5px;display:block}
 
 /* ═══ 07 · WRITING ════════════════════════════════════════ */
@@ -410,7 +432,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 }
 .reads a:hover{padding-left:20px}
 .reads__date{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim)}
-.reads__t{font-family:var(--serif);font-weight:300;font-size:clamp(1.1rem,2.2vw,1.7rem);line-height:1.28;letter-spacing:-.025em;transition:color .4s}
+.reads__t{font-family:var(--serif);font-weight:400;font-size:clamp(1.1rem,2.2vw,1.7rem);line-height:1.28;letter-spacing:-.025em;transition:color .4s}
 .reads a:hover .reads__t{color:var(--accent)}
 .reads__x{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
 @media (max-width:720px){.reads a{grid-template-columns:1fr auto}.reads__date{grid-column:1/-1}}
@@ -421,13 +443,14 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .contact__status i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:beat 2.4s var(--ease) infinite}
 @keyframes beat{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.72)}}
 .contact__line{
-  font-family:var(--serif);font-weight:300;
-  font-size:clamp(2.4rem,8vw,7.2rem);line-height:.98;letter-spacing:-.04em;
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(2.5rem,8.4vw,7.6rem);line-height:.96;letter-spacing:-.03em;
 }
 .contact__sub{margin-top:clamp(24px,3vw,38px);max-width:46ch;color:var(--dim)}
 .mail{
   display:inline-flex;align-items:center;gap:16px;margin-top:clamp(36px,5vw,64px);
-  font-family:var(--serif);font-weight:300;font-size:clamp(1.3rem,3.4vw,2.6rem);letter-spacing:-.03em;
+  font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,3.4vw,2.6rem);letter-spacing:-.03em;
   padding-bottom:10px;border-bottom:1px solid var(--rule);transition:border-color .45s,gap .45s var(--ease);
 }
 .mail:hover{border-bottom-color:var(--accent);gap:24px}
