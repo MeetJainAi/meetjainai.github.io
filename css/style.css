@@ -461,6 +461,69 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .foot{margin-top:clamp(70px,10vw,140px);border-top:1px solid var(--rule);padding:26px 0 30px}
 .foot__row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 
+
+/* ═══ ART DIRECTION ═══════════════════════════════════════
+   An identity system rather than a set of tasteful defaults:
+   a mark that rises with the page's own daylight, folio
+   numerals bled off the edge at magazine scale, and a closing
+   wordmark cropped by the viewport on both sides.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── the mark ─────────────────────────────────────────── */
+.mark{width:34px;height:auto;overflow:visible;flex:none}
+.mark__rule{stroke:currentColor;stroke-width:1.5;opacity:.45}
+.mark__ring{fill:none;stroke:currentColor;stroke-width:1.5}
+.mark__fill{fill:currentColor;opacity:.92}
+/* the sun inside the mark rises exactly as the page does */
+.mark__rise{transform:translateY(calc((1 - var(--glow)) * 40px))}
+
+.hud__mark{display:flex;align-items:center;margin-right:2px;color:#fff}
+.hud{gap:11px}
+
+/* ── folio numerals ───────────────────────────────────── */
+.folio{
+  position:absolute;left:calc(var(--gut) * -0.42);top:clamp(46px,7vw,104px);
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-size:clamp(11rem,29vw,27rem);line-height:.68;letter-spacing:-.05em;
+  color:transparent;-webkit-text-stroke:1px var(--rule);
+  pointer-events:none;user-select:none;z-index:0;
+}
+/* everything that carries meaning sits above the folio */
+.crossing > .wrap,.path > .wrap,.moved > .wrap,.toolkit > .wrap,
+.writing > .wrap,.contact > .wrap,.work > .wrap,.work .piece{position:relative;z-index:1}
+@media (max-width:760px){.folio{font-size:38vw;left:calc(var(--gut) * -0.5);opacity:.75}}
+
+/* ── the closing wordmark, cropped by the viewport ────── */
+.foot__wordmark{
+  width:100%;overflow:hidden;line-height:0;
+  margin-bottom:clamp(26px,4vw,52px);
+}
+.foot__wordmark span{
+  display:block;white-space:nowrap;
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-variation-settings:"opsz" 96;
+  /* deliberately wider than the viewport — it is meant to be cut */
+  font-size:24.5vw;line-height:.78;letter-spacing:-.045em;
+  margin-left:-1.6vw;
+  color:transparent;-webkit-text-stroke:1px var(--rule);
+}
+
+/* ── project numerals overlap their own titles ────────── */
+.piece__n{
+  position:relative;display:block;z-index:1;
+  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-size:clamp(3.4rem,7vw,6rem);line-height:.8;letter-spacing:-.04em;
+  color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--accent) 60%,transparent);
+  margin-bottom:-.2em;margin-left:-.015em;
+}
+.piece__title{position:relative;z-index:2}
+
+/* ── act divider: a hairline with the mark set into it ── */
+.divider{display:flex;align-items:center;gap:26px;padding:0 var(--gut);
+  max-width:var(--max);margin:0 auto clamp(30px,5vw,60px);color:var(--dim)}
+.divider i{flex:1;height:1px;background:var(--rule)}
+.divider .mark{width:26px;opacity:.7}
+
 /* ═══ a11y ════════════════════════════════════════════════ */
 :focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
 @media (prefers-reduced-motion:reduce){
