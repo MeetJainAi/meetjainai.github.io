@@ -60,8 +60,20 @@ index.html
 css/style.css
 js/main.js        palette engine, narrative clock, motion system
 js/sky.js         stars that go out as the sun comes up
+js/hero.js        the architecture revealed only under the cursor
 js/vendor/        GSAP + ScrollTrigger, vendored — no runtime CDN dependency
 ```
+
+## The hero
+
+The headline is *"I build the infrastructure you never see."* So a complete
+architecture sits behind it at all times — services on a jittered grid, wired
+to their neighbours with right-angled runs, traffic moving between them, some
+of them labelled `lambda`, `vpc`, `route53`.
+
+None of it is drawn. It is rendered **only where the reader is looking** — a
+torch over a system that was always there. On a device without a pointer the
+torch drifts on its own so the idea still lands.
 
 ## Motion
 

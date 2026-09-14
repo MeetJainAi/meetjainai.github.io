@@ -58,21 +58,24 @@
 
 <!-- ══ 00 · HERO ════════════════════════════════════════════ -->
 <section class="hero" data-act="night">
-  <div class="wrap">
+  <canvas class="hero__grid" id="heroGrid" aria-hidden="true"></canvas>
+
+  <div class="wrap hero__inner">
     <p class="hero__eyebrow rise"><span>Toronto, Canada</span><span>·</span><span>Five AWS &amp; HashiCorp certifications</span></p>
     <h1 class="hero__line">
-      <span class="m"><span>I build the</span></span>
-      <span class="m"><span>infrastructure</span></span>
-      <span class="m"><span><em>you never see.</em></span></span>
+      <span class="m l1"><span>I build the</span></span>
+      <span class="m l2"><span>infrastructure</span></span>
+      <span class="m l3"><span><em>you never see.</em></span></span>
     </h1>
     <p class="hero__sub rise">
       Serverless architecture, data pipelines and the unglamorous
       arithmetic of what a cloud actually costs.
     </p>
   </div>
-  <div class="hero__cue" aria-hidden="true">
-    <span>Scroll</span>
-    <i></i>
+
+  <div class="hero__foot" aria-hidden="true">
+    <div class="hero__cue"><span>Scroll</span><i></i></div>
+    <div class="hero__hint"><i></i><span>Move to reveal it</span></div>
   </div>
 </section>
 
@@ -352,6 +355,7 @@
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="js/sky.js" defer></script>
+<script src="js/hero.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

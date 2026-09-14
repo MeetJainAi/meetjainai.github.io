@@ -143,12 +143,36 @@
   observe('.reveal', 'in', 0.16);
   observe('.arc', 'in', 0.35);
 
-  // hero copy arrives immediately — nothing gates the first read
-  requestAnimationFrame(function () {
-    document.querySelectorAll('.hero .m, .hero .rise').forEach(function (el, i) {
-      setTimeout(function () { el.classList.add('in'); }, 80 + i * 110);
+  // Hero copy arrives immediately — nothing gates the first read.
+  // With GSAP the three lines land on separate arcs so the sentence
+  // has a cadence instead of a single uniform slide.
+  var heroGS = typeof window.gsap !== 'undefined' && !reduce;
+  if (heroGS) {
+    root.classList.add('gsap');
+    // Drop the CSS base transform BEFORE GSAP reads it. The stylesheet
+    // parks these at translateY(115%), and GSAP resolves that computed
+    // matrix to a fixed y in px — animating yPercent alone then leaves
+    // ~160px of residue and the headline never comes back into its mask.
+    document.querySelectorAll('.hero .m, .hero .rise').forEach(function (el) { el.classList.add('in'); });
+    var lines = document.querySelectorAll('.hero__line .m > span');
+    gsap.set(lines, { y: 0, yPercent: 118, rotate: 2.2, transformOrigin: '0% 100%' });
+    gsap.to(lines, {
+      y: 0, yPercent: 0, rotate: 0,
+      duration: 1.45, ease: 'expo.out', stagger: 0.13, delay: 0.12
     });
-  });
+    gsap.fromTo('.hero__eyebrow',
+      { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 1, ease: 'expo.out', delay: 0.05 });
+    gsap.fromTo('.hero__sub',
+      { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', delay: 0.62 });
+    gsap.fromTo('.hero__foot',
+      { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out', delay: 1.05 });
+  } else {
+    requestAnimationFrame(function () {
+      document.querySelectorAll('.hero .m, .hero .rise').forEach(function (el, i) {
+        setTimeout(function () { el.classList.add('in'); }, 80 + i * 110);
+      });
+    });
+  }
 
   /* ─────────────────────────────────────────────
      4. WORD-BY-WORD READING LIGHT
@@ -303,8 +327,12 @@
       scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.1 }
     });
     gsap.to('.hero__line', {
-      yPercent: -16, opacity: 0.25, ease: 'none',
+      yPercent: -14, opacity: 0.22, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.7 }
+    });
+    gsap.to('.hero__grid', {
+      opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: '40% top', end: 'bottom top', scrub: 0.5 }
     });
     gsap.to('.hero__sub', {
       yPercent: -42, ease: 'none',
@@ -338,8 +366,9 @@
     /* 8e · headline entrances with real weight — character stagger
        out of a blur, not a uniform fade. */
     gsap.utils.toArray('.head__title .m > span, .contact__line .m > span').forEach(function (el) {
-      gsap.fromTo(el, { yPercent: 118, rotate: 1.4 }, {
-        yPercent: 0, rotate: 0, duration: 1.25, ease: 'expo.out',
+      el.parentNode.classList.add('in');          // clear the CSS base first
+      gsap.fromTo(el, { y: 0, yPercent: 118, rotate: 1.4 }, {
+        y: 0, yPercent: 0, rotate: 0, duration: 1.25, ease: 'expo.out',
         scrollTrigger: { trigger: el, start: 'top 92%', once: true }
       });
     });
