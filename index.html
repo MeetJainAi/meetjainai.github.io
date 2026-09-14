@@ -1,553 +1,365 @@
 <!DOCTYPE html>
-<html lang="en" class="is-loading">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Meet Shah — AWS Cloud Architect &amp; Data Engineer</title>
-<meta name="description" content="Meet Shah — AWS Certified Solutions Architect in Toronto. Serverless architecture, ETL pipelines, Terraform and cloud cost optimization. A portfolio built like an architecture diagram." />
+<title>Meet Shah — AWS Cloud Architect</title>
+<meta name="description" content="Meet Shah, AWS Certified Solutions Architect in Toronto. Serverless architecture, ETL pipelines, Terraform, and cloud cost optimization. I build the infrastructure you never see." />
 <meta name="author" content="Meet Shah" />
-<meta name="theme-color" content="#05060a" />
+<meta name="theme-color" content="#05070C" />
 <link rel="canonical" href="https://meetjainai.github.io/" />
-
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Meet Shah — AWS Cloud Architect" />
-<meta property="og:description" content="The Control Plane — a portfolio you scroll through like an architecture diagram." />
+<meta property="og:description" content="I build the infrastructure you never see." />
 <meta property="og:url" content="https://meetjainai.github.io/" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:creator" content="@meetjainai" />
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2305060A'/%3E%3Cpath d='M22 72V28l28 24 28-24v44' stroke='%23FFB020' stroke-width='9' fill='none' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2305070C'/%3E%3Ccircle cx='50' cy='62' r='20' fill='none' stroke='%23E8863C' stroke-width='7'/%3E%3Cpath d='M18 62h64' stroke='%23E8863C' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 <noscript><style>
-  /* Without JS there is no boot sequence to dismiss and no scroll choreography —
-     show the full document immediately rather than trapping the reader. */
-  html.is-loading{overflow:auto!important;}
-  .boot,.cursor,.rail{display:none!important;}
-  .reveal,[data-words] .wd{opacity:1!important;transform:none!important;}
-  .dag{height:auto!important;}
-  .dag__pin{position:static!important;height:auto!important;padding:80px 0;}
-  .dag__viewport{overflow-x:auto!important;}
-  .mod__meter i{width:var(--v)!important;}
+  .stars,.horizon{display:none!important}
+  .reveal,.rise > *,[data-words] .wd{opacity:1!important;transform:none!important;clip-path:none!important}
+  :root{--bg:#0A0A12;--fg:#EDEFF5;--dim:#9AA2B4;--rule:rgba(255,255,255,.12);--accent:#E8863C}
+  .break{display:none!important}
 </style></noscript>
 </head>
 <body>
 
-<!-- ══════════════════ COLD START / PRELOADER ══════════════════ -->
-<div class="boot" id="boot" aria-hidden="true">
-  <div class="boot__inner">
-    <div class="boot__brand">
-      <span class="boot__glyph"></span>
-      <span>control-plane</span>
-    </div>
-    <pre class="boot__log" id="bootLog"></pre>
-    <div class="boot__bar"><i id="bootFill"></i></div>
-    <div class="boot__meta">
-      <span id="bootPct">00</span><span>%</span>
-      <span class="boot__spacer"></span>
-      <span>cold start</span>
-    </div>
-  </div>
-  <div class="boot__curtain"></div>
-</div>
-
-<!-- ══════════════════ CHROME ══════════════════ -->
 <div class="grain" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
-<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span><span class="cursor__label"></span></div>
+<canvas class="stars" id="stars" aria-hidden="true"></canvas>
 
-<header class="nav" id="nav">
-  <a class="nav__brand" href="#top" data-cursor="home">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M22 72V28l28 24 28-24v44"/></svg>
-    <span class="nav__brandtxt">meet<em>shah</em></span>
-  </a>
-  <nav class="nav__links" aria-label="Sections">
-    <a href="#ingest"><i>01</i>about</a>
-    <a href="#transform"><i>02</i>stack</a>
-    <a href="#orchestrate"><i>03</i>path</a>
-    <a href="#deploy"><i>04</i>work</a>
-    <a href="#observe"><i>05</i>impact</a>
-    <a href="#broadcast"><i>07</i>writing</a>
-  </nav>
-  <a class="nav__cta" href="mailto:hire@meetshahdev.com" data-cursor="mail">
-    <span class="nav__pulse"></span>available
-  </a>
-  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
-    <span></span><span></span>
-  </button>
+<!-- ── persistent chrome ───────────────────────────────────── -->
+<header class="hud">
+  <a class="hud__name" href="#top">Meet Shah</a>
+  <span class="hud__role">AWS Cloud Architect</span>
+  <div class="hud__right">
+    <span class="hud__time" id="hudTime" aria-hidden="true">04:12</span>
+    <span class="hud__place">Toronto</span>
+  </div>
 </header>
 
-<div class="menu" id="menu" hidden>
-  <nav class="menu__links" aria-label="Sections">
-    <a href="#ingest"><i>01</i>About</a>
-    <a href="#transform"><i>02</i>Stack</a>
-    <a href="#orchestrate"><i>03</i>Path</a>
-    <a href="#deploy"><i>04</i>Work</a>
-    <a href="#observe"><i>05</i>Impact</a>
-    <a href="#certify"><i>06</i>Certs</a>
-    <a href="#broadcast"><i>07</i>Writing</a>
-    <a href="#connect"><i>08</i>Contact</a>
-  </nav>
-  <div class="menu__foot">
-    <a href="mailto:hire@meetshahdev.com">hire@meetshahdev.com</a>
-    <div class="menu__social">
-      <a href="https://github.com/MeetJainAi" target="_blank" rel="noopener">github</a>
-      <a href="https://linkedin.com/in/meetjain" target="_blank" rel="noopener">linkedin</a>
-      <a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">medium</a>
-    </div>
-  </div>
-</div>
+<a class="skip" href="#work">Skip to the work</a>
 
-<!-- region rail -->
-<aside class="rail" aria-hidden="true">
-  <div class="rail__line"><i id="railFill"></i></div>
-  <ul class="rail__ticks" id="railTicks"></ul>
-  <div class="rail__label"><span id="railName">boot</span></div>
-</aside>
+<nav class="dots" aria-label="Sections">
+  <a href="#top"      data-label="Start"><i></i></a>
+  <a href="#crossing" data-label="The crossing"><i></i></a>
+  <a href="#path"     data-label="The path"><i></i></a>
+  <a href="#work"     data-label="The work"><i></i></a>
+  <a href="#moved"    data-label="What it moved"><i></i></a>
+  <a href="#toolkit"  data-label="Toolkit"><i></i></a>
+  <a href="#contact"  data-label="Contact"><i></i></a>
+</nav>
 
 <main id="top">
 
-<!-- ══════════════════ 00 — HERO ══════════════════ -->
-<section class="hero" id="hero" data-section="hero" data-name="root">
-  <canvas class="hero__gl" id="glCanvas" aria-hidden="true"></canvas>
-  <canvas class="hero__net" id="netCanvas" aria-hidden="true"></canvas>
-  <div class="hero__grid" aria-hidden="true"></div>
-
-  <div class="hero__inner">
-    <div class="hero__top reveal">
-      <span class="chip chip--live"><i></i>online · ca-central-1</span>
-      <span class="chip">toronto, canada</span>
-      <span class="chip" id="clock">--:--:-- edt</span>
-    </div>
-
-    <h1 class="hero__name">
-      <span class="line"><span class="w" data-split>MEET</span></span>
-      <span class="line"><span class="w" data-split>SHAH</span></span>
+<!-- ══ 00 · HERO ════════════════════════════════════════════ -->
+<section class="hero" data-act="night">
+  <div class="wrap">
+    <p class="hero__eyebrow rise"><span>Toronto, Canada</span><span>·</span><span>Five AWS &amp; HashiCorp certifications</span></p>
+    <h1 class="hero__line">
+      <span class="m"><span>I build the</span></span>
+      <span class="m"><span>infrastructure</span></span>
+      <span class="m"><span><em>you never see.</em></span></span>
     </h1>
-
-    <div class="hero__role reveal">
-      <span class="hero__role-static">I architect</span>
-      <span class="hero__role-rot" id="roleRot" aria-live="polite">
-        <b>serverless systems</b><b>data pipelines</b><b>terraform modules</b><b>cost efficiency</b><b>ML platforms</b>
-      </span>
-    </div>
-
-    <p class="hero__blurb reveal">
-      AWS Certified Solutions Architect building enterprise-grade cloud infrastructure —
-      event-driven, observable, and <em>relentlessly</em> optimized. Five certifications,
-      three clouds, and a habit of cutting bills by a third.
+    <p class="hero__sub rise">
+      Serverless architecture, data pipelines and the unglamorous
+      arithmetic of what a cloud actually costs.
     </p>
-
-    <div class="hero__actions reveal">
-      <a class="btn btn--primary magnetic" href="#deploy" data-cursor="view"><span>See the architecture</span></a>
-      <a class="btn btn--ghost magnetic" href="mailto:hire@meetshahdev.com" data-cursor="mail"><span>hire@meetshahdev.com</span></a>
-    </div>
   </div>
-
-  <div class="hero__scroll" aria-hidden="true">
-    <span>scroll to traverse</span>
-    <div class="hero__scrollbar"><i></i></div>
+  <div class="hero__cue" aria-hidden="true">
+    <span>Scroll</span>
+    <i></i>
   </div>
 </section>
 
-<!-- ══════════════════ MARQUEE ══════════════════ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>LAMBDA</span><span>◆</span><span>TERRAFORM</span><span>◆</span><span>AIRFLOW</span><span>◆</span><span>REDSHIFT</span><span>◆</span><span>GLUE</span><span>◆</span><span>STEP FUNCTIONS</span><span>◆</span><span>DYNAMODB</span><span>◆</span><span>PYSPARK</span><span>◆</span><span>CLOUDFORMATION</span><span>◆</span><span>API GATEWAY</span><span>◆</span><span>QUICKSIGHT</span><span>◆</span><span>S3</span><span>◆</span>
-    <span>LAMBDA</span><span>◆</span><span>TERRAFORM</span><span>◆</span><span>AIRFLOW</span><span>◆</span><span>REDSHIFT</span><span>◆</span><span>GLUE</span><span>◆</span><span>STEP FUNCTIONS</span><span>◆</span><span>DYNAMODB</span><span>◆</span><span>PYSPARK</span><span>◆</span><span>CLOUDFORMATION</span><span>◆</span><span>API GATEWAY</span><span>◆</span><span>QUICKSIGHT</span><span>◆</span><span>S3</span><span>◆</span>
-  </div>
-</div>
+<!-- ══ 01 · PREMISE — a held beat ═══════════════════════════ -->
+<section class="beat" data-act="night">
+  <p class="beat__line" data-words>
+    Nobody celebrates a cloud bill that drops 25%.
+    They just quietly stop worrying about it.
+  </p>
+</section>
 
-<!-- ══════════════════ 01 — INGEST ══════════════════ -->
-<section class="sec ingest" id="ingest" data-section="01" data-name="ingest">
-  <div class="sec__head">
-    <span class="sec__num">01</span>
-    <h2 class="sec__title" data-split-lines>Ingest</h2>
-    <span class="sec__kicker">// raw source · about</span>
-  </div>
+<!-- ══ 02 · THE CROSSING — peak one ═════════════════════════ -->
+<section class="crossing" id="crossing" data-act="deep">
+  <div class="wrap">
+    <span class="tag">Chapter one</span>
 
-  <div class="ingest__body">
-    <div class="ingest__copy">
-      <p class="big" data-words>I build the parts of software nobody sees — and everybody depends on.</p>
-      <p data-words>Five years in, my work lives in the layer between a business question and the answer: the queues, the DAGs, the state machines, the buckets that quietly move a company's data from <em>scattered</em> to <em>decided</em>.</p>
-      <p data-words>I started as a software engineer at Mobiuso, migrating on-prem systems into AWS. A diploma in Cloud Computing for Big Data at Lambton College sharpened it. At Arihant eSolutions I went from supporting infrastructure to designing it — serverless architectures that cut operational cost 25%, Terraform modules that dropped configuration errors 40%, and ETL pipelines that never needed a human again.</p>
-      <p data-words>Lately I've been pulling the same rigour into ML: reproducible pipelines, versioned artifacts, and models that ship instead of sitting in notebooks.</p>
+    <figure class="arc">
+      <svg viewBox="0 0 900 360" role="img" aria-label="A 12,164 kilometre arc from Vadodara, India to Toronto, Canada">
+        <g class="arc__grid" aria-hidden="true">
+          <path d="M0 90H900M0 150H900M0 210H900M0 270H900"/>
+        </g>
+        <path class="arc__path" d="M150 268 C 330 40, 620 40, 780 150" pathLength="1"/>
+        <g class="arc__pt arc__pt--a">
+          <circle cx="150" cy="268" r="4.5"/>
+          <text x="150" y="304">VADODARA</text>
+          <text x="150" y="322" class="arc__co">22.31°N  73.18°E</text>
+        </g>
+        <g class="arc__pt arc__pt--b">
+          <circle cx="780" cy="150" r="4.5"/>
+          <text x="828" y="186">TORONTO</text>
+          <text x="828" y="204" class="arc__co">43.65°N  79.38°W</text>
+        </g>
+        <text class="arc__dist" x="472" y="56">12,164 km</text>
+      </svg>
+    </figure>
+
+    <div class="crossing__copy">
+      <p class="lede" data-words>In 2022 I left a software engineering job in India, moved to Toronto, and enrolled as a student again.</p>
+      <p data-words>A year later I started at a cloud consultancy as an intern — a title I had already outgrown once. It was the fastest way back to the work I actually wanted, so I took it.</p>
     </div>
-
-    <aside class="spec">
-      <div class="spec__bar"><span>system.spec</span><i></i><i></i><i></i></div>
-      <dl class="spec__list">
-        <div><dt>name</dt><dd>Meet Shah</dd></div>
-        <div><dt>role</dt><dd>AWS Cloud Architect</dd></div>
-        <div><dt>region</dt><dd>Toronto, Canada</dd></div>
-        <div><dt>focus</dt><dd>Serverless · Data · MLOps</dd></div>
-        <div><dt>certs</dt><dd>5 active</dd></div>
-        <div><dt>status</dt><dd class="ok">open to work</dd></div>
-      </dl>
-      <div class="spec__foot">
-        <a href="https://github.com/MeetJainAi" target="_blank" rel="noopener">github</a>
-        <a href="https://linkedin.com/in/meetjain" target="_blank" rel="noopener">linkedin</a>
-        <a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">medium</a>
-      </div>
-    </aside>
   </div>
 </section>
 
-<!-- ══════════════════ 02 — TRANSFORM ══════════════════ -->
-<section class="sec transform" id="transform" data-section="02" data-name="transform">
-  <div class="sec__head">
-    <span class="sec__num">02</span>
-    <h2 class="sec__title" data-split-lines>Transform</h2>
-    <span class="sec__kicker">// the stack · capabilities</span>
-  </div>
+<!-- ══ 03 · THE PATH ════════════════════════════════════════ -->
+<section class="path" id="path" data-act="deep">
+  <div class="wrap">
+    <header class="head">
+      <span class="tag">Chapter two</span>
+      <h2 class="head__title"><span class="m"><span>The long way</span></span></h2>
+      <p class="head__note">Nine years, two countries, one restart.</p>
+    </header>
 
-  <div class="stack" id="stack">
-    <article class="mod reveal" data-accent="amber">
-      <header><span class="mod__idx">01</span><h3>AWS Services</h3></header>
-      <div class="mod__meter"><i style="--v:95%"></i></div>
-      <ul><li>Lambda</li><li>S3</li><li>EC2</li><li>Redshift</li><li>Glue</li><li>DynamoDB</li><li>CloudFormation</li><li>IAM</li><li>CloudWatch</li><li>Step Functions</li></ul>
-    </article>
-    <article class="mod reveal" data-accent="cyan">
-      <header><span class="mod__idx">02</span><h3>Data Engineering</h3></header>
-      <div class="mod__meter"><i style="--v:92%"></i></div>
-      <ul><li>Apache Airflow</li><li>ETL Pipelines</li><li>Data Warehousing</li><li>Big Data</li><li>Real-time Analytics</li></ul>
-    </article>
-    <article class="mod reveal" data-accent="violet">
-      <header><span class="mod__idx">03</span><h3>Infrastructure as Code</h3></header>
-      <div class="mod__meter"><i style="--v:90%"></i></div>
-      <ul><li>Terraform</li><li>CloudFormation</li><li>Resource Templating</li><li>Infra Automation</li></ul>
-    </article>
-    <article class="mod reveal" data-accent="cyan">
-      <header><span class="mod__idx">04</span><h3>Integration &amp; Workflow</h3></header>
-      <div class="mod__meter"><i style="--v:88%"></i></div>
-      <ul><li>API Gateway</li><li>Step Functions</li><li>Event-driven Arch</li><li>Salesforce / SaaS</li></ul>
-    </article>
-    <article class="mod reveal" data-accent="amber">
-      <header><span class="mod__idx">05</span><h3>Programming</h3></header>
-      <div class="mod__meter"><i style="--v:93%"></i></div>
-      <ul><li>Python</li><li>SQL</li><li>PySpark</li><li>Bash</li><li>Shell</li></ul>
-    </article>
-    <article class="mod reveal" data-accent="violet">
-      <header><span class="mod__idx">06</span><h3>DevOps &amp; Automation</h3></header>
-      <div class="mod__meter"><i style="--v:87%"></i></div>
-      <ul><li>CI/CD</li><li>GitHub Actions</li><li>Jenkins</li><li>Infra Testing</li><li>Docker</li><li>Kubernetes</li></ul>
-    </article>
-    <article class="mod reveal mod--wide" data-accent="amber">
-      <header><span class="mod__idx">07</span><h3>Solutions Architecture</h3></header>
-      <div class="mod__meter"><i style="--v:91%"></i></div>
-      <ul><li>System Design</li><li>Cloud Migration</li><li>Performance Optimization</li><li>Cost Management</li><li>Well-Architected Reviews</li></ul>
-    </article>
-  </div>
-</section>
-
-<!-- ══════════════════ 03 — ORCHESTRATE (horizontal DAG) ══════════════════ -->
-<section class="dag" id="orchestrate" data-section="03" data-name="orchestrate">
-  <div class="dag__pin">
-    <div class="dag__head">
-      <span class="sec__num">03</span>
-      <h2 class="sec__title">Orchestrate</h2>
-      <span class="sec__kicker">// execution graph · 2016 → now</span>
-    </div>
-
-    <div class="dag__viewport">
-      <div class="dag__track" id="dagTrack">
-
-        <article class="node">
-          <div class="node__port"><i></i></div>
-          <div class="node__card">
-            <span class="node__state">SUCCEEDED</span>
-            <span class="node__date">2016 — 2020</span>
-            <h3>B.Tech, Computer Science</h3>
-            <p class="node__org">Parul University · Vadodara, India</p>
-            <p class="node__desc">Four years of fundamentals — algorithms, systems, and the first taste of building things that outlive the demo.</p>
-            <ul class="node__tags"><li>CS Foundations</li><li>Python</li></ul>
-          </div>
-        </article>
-
-        <article class="node">
-          <div class="node__port"><i></i></div>
-          <div class="node__card">
-            <span class="node__state">SUCCEEDED</span>
-            <span class="node__date">Nov 2020 — Nov 2021</span>
-            <h3>Software Engineer</h3>
-            <p class="node__org">Mobiuso · Remote</p>
-            <p class="node__desc">Championed migration from on-prem to AWS with security, performance and cost baked in. Built modular Terraform templates that cut environment setup from <b>days to hours</b>, plus Python analytics pipelines and event-driven REST integrations.</p>
-            <ul class="node__tags"><li>AWS Migration</li><li>Terraform</li><li>REST</li><li>Python</li></ul>
-          </div>
-        </article>
-
-        <article class="node">
-          <div class="node__port"><i></i></div>
-          <div class="node__card">
-            <span class="node__state">SUCCEEDED</span>
-            <span class="node__date">2022 — 2023</span>
-            <h3>Diploma, Cloud Computing for Big Data</h3>
-            <p class="node__org">Lambton College · Toronto, Canada</p>
-            <p class="node__desc">A deliberate re-specialisation: distributed storage, warehousing, and the economics of running compute at scale.</p>
-            <ul class="node__tags"><li>Big Data</li><li>Warehousing</li></ul>
-          </div>
-        </article>
-
-        <article class="node">
-          <div class="node__port"><i></i></div>
-          <div class="node__card">
-            <span class="node__state">SUCCEEDED</span>
-            <span class="node__date">Sep 2023 — Dec 2023</span>
-            <h3>Cloud Support Engineer</h3>
-            <p class="node__org">Arihant eSolutions Inc · Internship</p>
-            <p class="node__desc">Ran client-critical EC2, S3 and RDS environments. Wrote Python automation for monitoring, reporting and resource scheduling that removed <b>35% of manual operational work</b>, and wired AWS to third-party systems.</p>
-            <ul class="node__tags"><li>EC2</li><li>RDS</li><li>Python Automation</li><li>Lambda</li></ul>
-          </div>
-        </article>
-
-        <article class="node node--current">
-          <div class="node__port"><i></i></div>
-          <div class="node__card">
-            <span class="node__state node__state--run">RUNNING</span>
-            <span class="node__date">Jan 2024 — May 2025</span>
-            <h3>Cloud Engineer</h3>
-            <p class="node__org">Arihant eSolutions Inc · Toronto, Canada</p>
-            <p class="node__desc">Designed serverless architectures on Lambda, S3 and DynamoDB — <b>25% lower operational cost</b>. Engineered Glue + Airflow ETL for automated BI. Built reusable Terraform modules that cut configuration errors <b>40%</b>. Drove a targeted FinOps push worth <b>20% monthly savings</b>, and shipped Step Functions + API Gateway workflow apps that erased repetitive internal tasks.</p>
-            <ul class="node__tags"><li>Serverless</li><li>Glue</li><li>Airflow</li><li>Step Functions</li><li>FinOps</li></ul>
-          </div>
-        </article>
-
-      </div>
-    </div>
-
-    <div class="dag__hint"><span>keep scrolling</span><i></i></div>
-  </div>
-</section>
-
-<!-- ══════════════════ 04 — DEPLOY ══════════════════ -->
-<section class="sec deploy" id="deploy" data-section="04" data-name="deploy">
-  <div class="sec__head">
-    <span class="sec__num">04</span>
-    <h2 class="sec__title" data-split-lines>Deploy</h2>
-    <span class="sec__kicker">// shipped stacks · selected work</span>
-  </div>
-
-  <div class="projects">
-
-    <article class="proj reveal" data-accent="cyan">
-      <div class="proj__left">
-        <span class="proj__id">stack_01</span>
-        <h3 class="proj__title">Real Estate Data<br/>ETL Pipeline</h3>
-        <p class="proj__desc">A multi-zone data platform for real-estate market analysis. Lambda pulls Zillow's API in real time, S3 layers stage raw → refined → curated, Airflow on EC2 orchestrates the whole graph, Redshift warehouses it, and QuickSight turns it into decisions stakeholders actually use.</p>
-        <ul class="proj__tags"><li>Lambda</li><li>S3</li><li>Airflow</li><li>EC2</li><li>Redshift</li><li>QuickSight</li></ul>
-        <div class="proj__stats">
-          <div><b data-count="99.8" data-dec="1" data-suffix="%">0</b><span>pipeline reliability</span></div>
-          <div><b data-count="0" data-suffix="">0</b><span>manual handling</span></div>
-          <div><b data-count="3" data-suffix="-zone">0</b><span>lake architecture</span></div>
+    <ol class="track">
+      <li class="stop reveal">
+        <span class="stop__year">2016<i>—</i>20</span>
+        <div class="stop__body">
+          <h3>B.Tech, Computer Science</h3>
+          <p class="stop__org">Parul University · Vadodara, India</p>
+          <p>Four years of fundamentals. Algorithms, systems, and the first taste of building something that outlives its demo.</p>
         </div>
-      </div>
-      <div class="proj__right">
-        <svg class="arch" viewBox="0 0 300 250" aria-label="Real estate ETL architecture">
-          <g class="arch__edges">
-            <path d="M150 46 V74"/><path d="M150 106 V134"/><path d="M150 166 V194"/>
-            <path d="M62 46 H88"/><path d="M212 90 H238 V150 H212"/>
-          </g>
-          <g class="arch__nodes">
-            <rect x="8" y="18" width="54" height="28" rx="7"/><text x="35" y="36">Zillow</text>
-            <rect x="88" y="18" width="124" height="28" rx="7"/><text x="150" y="36">Lambda · extract</text>
-            <rect x="88" y="74" width="124" height="32" rx="7"/><text x="150" y="94">S3 · raw/refined/curated</text>
-            <rect x="88" y="134" width="124" height="32" rx="7"/><text x="150" y="154">Glue + Airflow</text>
-            <rect x="88" y="194" width="124" height="32" rx="7"/><text x="150" y="214">Redshift → QuickSight</text>
-            <rect x="238" y="76" width="54" height="26" rx="7"/><text x="265" y="93">EC2</text>
-          </g>
-        </svg>
-      </div>
-    </article>
+      </li>
 
-    <article class="proj reveal proj--alt" data-accent="violet">
-      <div class="proj__left">
-        <span class="proj__id">stack_02</span>
-        <h3 class="proj__title">Terraform<br/>Module Library</h3>
-        <p class="proj__desc">An enterprise module registry that made "how do we provision this?" a solved question. Semantic versioning, real documentation, and a CI pipeline that tests infrastructure code before it ever touches an account — so adoption spread across the org instead of stalling in one team.</p>
-        <ul class="proj__tags"><li>Terraform</li><li>GitHub Actions</li><li>Module Registry</li><li>Infra Testing</li></ul>
-        <div class="proj__stats">
-          <div><b data-count="50" data-suffix="%">0</b><span>faster deployment</span></div>
-          <div><b data-count="40" data-suffix="%">0</b><span>fewer config errors</span></div>
-          <div><b data-count="100" data-suffix="%">0</b><span>versioned + documented</span></div>
+      <li class="stop reveal">
+        <span class="stop__year">2020<i>—</i>21</span>
+        <div class="stop__body">
+          <h3>Software Engineer</h3>
+          <p class="stop__org">Mobiuso · Remote</p>
+          <p>Led a migration off on-premise servers into AWS. Wrote modular Terraform that took environment setup from <b>days down to hours</b>, then built Python analytics pipelines and event-driven REST integrations on top of it.</p>
+          <ul class="chips"><li>AWS Migration</li><li>Terraform</li><li>Python</li><li>REST</li></ul>
         </div>
-      </div>
-      <div class="proj__right">
-        <svg class="arch" viewBox="0 0 300 250" aria-label="Terraform module library architecture">
-          <g class="arch__edges">
-            <path d="M150 48 V74"/>
-            <path d="M150 74 H46 V106"/><path d="M150 74 H254 V106"/><path d="M150 74 V106"/>
-            <path d="M46 138 V170 H150"/><path d="M150 138 V170"/><path d="M254 138 V170 H150"/>
-            <path d="M150 170 V200"/>
-          </g>
-          <g class="arch__nodes">
-            <rect x="92" y="20" width="116" height="28" rx="7"/><text x="150" y="38">module · v1.4.0</text>
-            <rect x="16" y="106" width="60" height="32" rx="7"/><text x="46" y="126">dev</text>
-            <rect x="120" y="106" width="60" height="32" rx="7"/><text x="150" y="126">stage</text>
-            <rect x="224" y="106" width="60" height="32" rx="7"/><text x="254" y="126">prod</text>
-            <rect x="92" y="200" width="116" height="28" rx="7"/><text x="150" y="218">CI · plan + test</text>
-          </g>
-        </svg>
-      </div>
-    </article>
+      </li>
 
-    <article class="proj reveal" data-accent="amber">
-      <div class="proj__left">
-        <span class="proj__id">stack_03</span>
-        <h3 class="proj__title">Intelligent Cloud<br/>Cost Optimization</h3>
-        <p class="proj__desc">A FinOps control plane. Lambda + CloudWatch continuously read utilization into DynamoDB, tagging is auto-enforced so every dollar has an owner, QuickSight surfaces the trendline, and a configurable alerting layer catches anomalous spend before the invoice does.</p>
-        <ul class="proj__tags"><li>Lambda</li><li>DynamoDB</li><li>CloudWatch</li><li>QuickSight</li><li>FinOps</li></ul>
-        <div class="proj__stats">
-          <div><b data-count="30" data-suffix="%">0</b><span>infra cost reduction</span></div>
-          <div><b data-count="100" data-suffix="%">0</b><span>cost allocation visibility</span></div>
-          <div><b data-count="0" data-suffix="">0</b><span>performance traded away</span></div>
+      <li class="stop stop--turn reveal">
+        <span class="stop__year">2022<i>—</i>23</span>
+        <div class="stop__body">
+          <span class="stop__flag">the restart</span>
+          <h3>Diploma, Cloud Computing for Big Data</h3>
+          <p class="stop__org">Lambton College · Toronto, Canada</p>
+          <p>A deliberate re-specialisation in a new country: distributed storage, warehousing, and the economics of running compute at scale.</p>
         </div>
-      </div>
-      <div class="proj__right">
-        <svg class="arch" viewBox="0 0 300 250" aria-label="Cloud cost optimization architecture">
-          <g class="arch__edges">
-            <path d="M150 48 V80"/><path d="M150 112 V144"/>
-            <path d="M150 144 H62 V182"/><path d="M150 144 H238 V182"/>
-            <path d="M62 214 H150 V240"/><path d="M238 214 H150"/>
-          </g>
-          <g class="arch__nodes">
-            <rect x="82" y="20" width="136" height="28" rx="7"/><text x="150" y="38">CloudWatch metrics</text>
-            <rect x="82" y="80" width="136" height="32" rx="7"/><text x="150" y="100">Lambda · analyzer</text>
-            <rect x="24" y="182" width="76" height="32" rx="7"/><text x="62" y="202">DynamoDB</text>
-            <rect x="200" y="182" width="76" height="32" rx="7"/><text x="238" y="202">alerting</text>
-          </g>
-        </svg>
-      </div>
-    </article>
+      </li>
 
+      <li class="stop reveal">
+        <span class="stop__year">2023</span>
+        <div class="stop__body">
+          <span class="stop__flag stop__flag--quiet">intern</span>
+          <h3>Cloud Support Engineer</h3>
+          <p class="stop__org">Arihant eSolutions · Toronto</p>
+          <p>Four months holding up client-critical EC2, S3 and RDS environments. I wrote Python automation for monitoring, reporting and resource scheduling that removed <b>35% of the manual operational work</b> — and made the case for myself in the process.</p>
+          <ul class="chips"><li>EC2</li><li>RDS</li><li>Lambda</li><li>Automation</li></ul>
+        </div>
+      </li>
+
+      <li class="stop stop--now reveal">
+        <span class="stop__year">2024<i>—</i>25</span>
+        <div class="stop__body">
+          <span class="stop__flag stop__flag--hot">the climb back</span>
+          <h3>Cloud Engineer</h3>
+          <p class="stop__org">Arihant eSolutions · Toronto</p>
+          <p>Eighteen months designing the systems I had been supporting. Serverless architecture on Lambda, S3 and DynamoDB. Glue and Airflow ETL feeding automated BI. Reusable Terraform modules. A FinOps programme that took a real bite out of a real invoice.</p>
+          <ul class="chips"><li>Serverless</li><li>Glue</li><li>Airflow</li><li>Step Functions</li><li>FinOps</li></ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ 04 · THE WORK ════════════════════════════════════════ -->
+<section class="work" id="work" data-act="dusk">
+  <div class="wrap">
+    <header class="head">
+      <span class="tag">Chapter three</span>
+      <h2 class="head__title"><span class="m"><span>What I built</span></span></h2>
+      <p class="head__note">Three systems, and what they were actually for.</p>
+    </header>
   </div>
 
-  <div class="labs reveal">
-    <div class="labs__head"><span>/lab</span><p>side builds &amp; open source</p></div>
-    <ul class="labs__list">
-      <li><a href="https://github.com/MeetJainAi/AWS-SERVERLESS-GAME-DEMO" target="_blank" rel="noopener"><b>AWS Serverless Game Demo</b><span>Cloud-native game platform — auth, score tracking, real-time leaderboard</span><i>TypeScript</i></a></li>
-      <li><a href="https://github.com/MeetJainAi/autoresearch-codex-plugin" target="_blank" rel="noopener"><b>autoresearch-codex-plugin</b><span>Automated research tooling for agentic coding workflows</span><i>Python</i></a></li>
-      <li><a href="https://github.com/MeetJainAi/DataScienceIn60Days" target="_blank" rel="noopener"><b>DataScienceIn60Days</b><span>A 60-day structured data-science curriculum · 10★</span><i>Curriculum</i></a></li>
-      <li><a href="https://github.com/MeetJainAi/Automatic-data-explorer-using-streamlit" target="_blank" rel="noopener"><b>Automatic Data Explorer</b><span>Streamlit app that profiles any dataset on upload</span><i>Python</i></a></li>
+  <article class="piece reveal">
+    <div class="wrap piece__grid">
+      <div class="piece__meta">
+        <span class="piece__n">01</span>
+        <ul class="chips"><li>Lambda</li><li>S3</li><li>Airflow</li><li>EC2</li><li>Redshift</li><li>QuickSight</li></ul>
+      </div>
+      <div class="piece__main">
+        <h3 class="piece__title">A pipeline that stopped<br/>needing a person</h3>
+        <p class="piece__lede">Real-estate market data arrived from Zillow's API in real time and had to become something a stakeholder could act on before it went stale.</p>
+        <p>Lambda handles extraction, S3 stages it across raw, refined and curated zones, Airflow on EC2 orchestrates the graph, Redshift warehouses it, and QuickSight puts it in front of the people deciding. Once it was running, nobody touched it.</p>
+        <dl class="figs">
+          <div><dt>99.8%</dt><dd>pipeline reliability</dd></div>
+          <div><dt>Zero</dt><dd>manual data handling</dd></div>
+        </dl>
+      </div>
+    </div>
+  </article>
+
+  <article class="piece reveal">
+    <div class="wrap piece__grid">
+      <div class="piece__meta">
+        <span class="piece__n">02</span>
+        <ul class="chips"><li>Terraform</li><li>GitHub Actions</li><li>Versioning</li><li>Infra testing</li></ul>
+      </div>
+      <div class="piece__main">
+        <h3 class="piece__title">A module library<br/>people actually adopted</h3>
+        <p class="piece__lede">Every team was provisioning the same resources slightly differently, and every difference was a future incident.</p>
+        <p>I built a versioned Terraform module library with documentation worth reading and a CI pipeline that tests infrastructure code before it reaches an account. The adoption was the hard part; the modules were the easy part.</p>
+        <dl class="figs">
+          <div><dt>50%</dt><dd>faster deployment</dd></div>
+          <div><dt>40%</dt><dd>fewer configuration errors</dd></div>
+        </dl>
+      </div>
+    </div>
+  </article>
+
+  <article class="piece reveal">
+    <div class="wrap piece__grid">
+      <div class="piece__meta">
+        <span class="piece__n">03</span>
+        <ul class="chips"><li>Lambda</li><li>DynamoDB</li><li>CloudWatch</li><li>QuickSight</li><li>FinOps</li></ul>
+      </div>
+      <div class="piece__main">
+        <h3 class="piece__title">The system that reads<br/>the invoice for you</h3>
+        <p class="piece__lede">Cloud spend is only mysterious until somebody makes every dollar traceable to an owner.</p>
+        <p>Lambda and CloudWatch stream utilisation into DynamoDB, tagging is automatically enforced so nothing is unattributable, QuickSight shows the trend, and a configurable alerting layer catches anomalous spend well before the bill arrives.</p>
+        <dl class="figs">
+          <div><dt>30%</dt><dd>infrastructure cost cut</dd></div>
+          <div><dt>None</dt><dd>performance traded away</dd></div>
+        </dl>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ══ 05 · WHAT IT MOVED — peak two ════════════════════════ -->
+<section class="moved" id="moved" data-act="dawn">
+  <div class="wrap">
+    <header class="head head--center">
+      <span class="tag">Chapter four</span>
+      <h2 class="head__title"><span class="m"><span>What it moved</span></span></h2>
+    </header>
+
+    <ul class="figures">
+      <li class="fig reveal"><b data-count="25" data-suffix="%">0</b><span>lower operational cost after the serverless redesign</span></li>
+      <li class="fig reveal"><b data-count="40" data-suffix="%">0</b><span>fewer configuration errors once Terraform was standard</span></li>
+      <li class="fig reveal"><b data-count="35" data-suffix="%">0</b><span>of manual operations automated away</span></li>
+      <li class="fig reveal"><b data-count="20" data-suffix="%">0</b><span>off the monthly AWS invoice, deliberately</span></li>
+      <li class="fig reveal"><b data-count="50" data-suffix="%">0</b><span>faster to ship infrastructure</span></li>
+      <li class="fig reveal"><b data-count="99.8" data-dec="1" data-suffix="%">0</b><span>reliability on production ETL</span></li>
     </ul>
   </div>
 </section>
 
-<!-- ══════════════════ 05 — OBSERVE ══════════════════ -->
-<section class="sec observe" id="observe" data-section="05" data-name="observe">
-  <div class="sec__head">
-    <span class="sec__num">05</span>
-    <h2 class="sec__title" data-split-lines>Observe</h2>
-    <span class="sec__kicker">// metrics · what the work moved</span>
-  </div>
-
-  <div class="metrics">
-    <div class="metric reveal"><b data-count="25" data-suffix="%">0</b><span class="metric__dir">↓</span><p>operational cost, via serverless redesign</p><div class="metric__spark"></div></div>
-    <div class="metric reveal"><b data-count="40" data-suffix="%">0</b><span class="metric__dir">↓</span><p>configuration errors, via Terraform modules</p><div class="metric__spark"></div></div>
-    <div class="metric reveal"><b data-count="35" data-suffix="%">0</b><span class="metric__dir">↓</span><p>manual operational tasks, via Python automation</p><div class="metric__spark"></div></div>
-    <div class="metric reveal"><b data-count="99.8" data-dec="1" data-suffix="%">0</b><span class="metric__dir">↑</span><p>pipeline reliability on production ETL</p><div class="metric__spark"></div></div>
-    <div class="metric reveal"><b data-count="50" data-suffix="%">0</b><span class="metric__dir">↑</span><p>deployment speed through standardisation</p><div class="metric__spark"></div></div>
-    <div class="metric reveal"><b data-count="20" data-suffix="%">0</b><span class="metric__dir">↓</span><p>monthly AWS spend, via targeted FinOps</p><div class="metric__spark"></div></div>
-  </div>
+<!-- ══ THE BREAK — silence while the light changes ══════════ -->
+<section class="break" data-act="break" aria-hidden="true">
+  <div class="sun"></div>
+  <div class="horizon"></div>
 </section>
 
-<!-- ══════════════════ 06 — CERTIFY ══════════════════ -->
-<section class="sec certify" id="certify" data-section="06" data-name="certify">
-  <div class="sec__head">
-    <span class="sec__num">06</span>
-    <h2 class="sec__title" data-split-lines>Certify</h2>
-    <span class="sec__kicker">// verified credentials</span>
-  </div>
+<!-- ══ 06 · TOOLKIT (daylight) ══════════════════════════════ -->
+<section class="toolkit" id="toolkit" data-act="day">
+  <div class="wrap">
+    <header class="head">
+      <span class="tag">The toolkit</span>
+      <h2 class="head__title"><span class="m"><span>What I reach for</span></span></h2>
+    </header>
 
-  <div class="certs">
-    <article class="cert reveal tilt" data-accent="amber"><div class="cert__in"><span class="cert__org">Amazon Web Services</span><h3>Solutions Architect</h3><span class="cert__lvl">Associate</span><div class="cert__seal"></div></div></article>
-    <article class="cert reveal tilt" data-accent="violet"><div class="cert__in"><span class="cert__org">Amazon Web Services</span><h3>Machine Learning Engineer</h3><span class="cert__lvl">Associate</span><div class="cert__seal"></div></div></article>
-    <article class="cert reveal tilt" data-accent="cyan"><div class="cert__in"><span class="cert__org">Amazon Web Services</span><h3>Data Engineer</h3><span class="cert__lvl">Associate</span><div class="cert__seal"></div></div></article>
-    <article class="cert reveal tilt" data-accent="violet"><div class="cert__in"><span class="cert__org">HashiCorp</span><h3>Terraform</h3><span class="cert__lvl">Associate</span><div class="cert__seal"></div></div></article>
-    <article class="cert reveal tilt" data-accent="amber"><div class="cert__in"><span class="cert__org">Oracle</span><h3>Generative AI</h3><span class="cert__lvl">Professional</span><div class="cert__seal"></div></div></article>
-  </div>
-</section>
-
-<!-- ══════════════════ 07 — BROADCAST ══════════════════ -->
-<section class="sec broadcast" id="broadcast" data-section="07" data-name="broadcast">
-  <div class="sec__head">
-    <span class="sec__num">07</span>
-    <h2 class="sec__title" data-split-lines>Broadcast</h2>
-    <span class="sec__kicker">// writing · medium.com/@meetjain.ai</span>
-  </div>
-
-  <ul class="posts">
-    <li class="post reveal">
-      <a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener" data-cursor="read">
-        <span class="post__date">30 Jan 2025</span>
-        <span class="post__body"><h3 class="post__title">From Scattered Data to Smart Insights: Build an End-to-End AWS ETL Pipeline</h3><span class="post__tags">Data Engineering · AWS · Data Visualization</span></span>
-        <span class="post__arrow">↗</span>
-      </a>
-    </li>
-    <li class="post reveal">
-      <a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener" data-cursor="read">
-        <span class="post__date">27 Sep 2024</span>
-        <span class="post__body"><h3 class="post__title">Unlocking the Secrets of AI: How Benchmarks Reveal the True Power of Large Language Models</h3><span class="post__tags">LLM · Generative AI · Evaluation</span></span>
-        <span class="post__arrow">↗</span>
-      </a>
-    </li>
-    <li class="post reveal">
-      <a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener" data-cursor="read">
-        <span class="post__date">11 Jan 2022</span>
-        <span class="post__body"><h3 class="post__title">Statistics for Data Science — Part 1</h3><span class="post__tags">Statistics · Data Science · ML</span></span>
-        <span class="post__arrow">↗</span>
-      </a>
-    </li>
-  </ul>
-</section>
-
-<!-- ══════════════════ 08 — CONNECT ══════════════════ -->
-<section class="sec connect" id="connect" data-section="08" data-name="connect">
-  <div class="connect__glow" aria-hidden="true"></div>
-
-  <div class="connect__inner">
-    <span class="sec__num">08</span>
-    <h2 class="connect__title"><span data-split>LET'S</span> <span data-split>BUILD</span><br/><span data-split>SOMETHING</span> <span data-split>THAT</span> <span data-split>SCALES.</span></h2>
-    <p class="connect__sub">Open to Cloud Architect, Data Engineering and MLOps roles — in Toronto or remote.</p>
-
-    <div class="term">
-      <div class="term__bar"><i></i><i></i><i></i><span>~/connect</span></div>
-      <div class="term__body">
-        <p><span class="term__p">$</span> whoami</p>
-        <p class="term__out">meet-shah · aws cloud architect · toronto</p>
-        <p><span class="term__p">$</span> contact --channels</p>
-        <p class="term__out">
-          <a href="mailto:hire@meetshahdev.com" data-cursor="mail">hire@meetshahdev.com</a>
-          <a href="tel:+16479893784">+1 (647) 989-3784</a>
-          <a href="https://linkedin.com/in/meetjain" target="_blank" rel="noopener">linkedin.com/in/meetjain</a>
-          <a href="https://github.com/MeetJainAi" target="_blank" rel="noopener">github.com/MeetJainAi</a>
-          <a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">medium.com/@meetjain.ai</a>
-        </p>
-        <p><span class="term__p">$</span> <span class="term__caret"></span></p>
-      </div>
+    <div class="cols">
+      <div class="col reveal"><h3>AWS</h3><p>Lambda · S3 · EC2 · Redshift · Glue · DynamoDB · CloudFormation · IAM · CloudWatch · Step Functions · API Gateway · QuickSight</p></div>
+      <div class="col reveal"><h3>Data</h3><p>Apache Airflow · ETL pipelines · Data warehousing · Big-data processing · Real-time analytics · PySpark</p></div>
+      <div class="col reveal"><h3>Infrastructure</h3><p>Terraform · CloudFormation · Resource templating · Infrastructure automation · Module versioning</p></div>
+      <div class="col reveal"><h3>Delivery</h3><p>CI/CD · GitHub Actions · Jenkins · Docker · Kubernetes · Infrastructure testing</p></div>
+      <div class="col reveal"><h3>Languages</h3><p>Python · SQL · PySpark · Bash · Shell</p></div>
+      <div class="col reveal"><h3>Architecture</h3><p>System design · Cloud migration · Performance optimisation · Cost management · Event-driven design</p></div>
     </div>
 
-    <a class="btn btn--primary btn--lg magnetic" href="mailto:hire@meetshahdev.com?subject=Let%27s%20talk" data-cursor="mail"><span>Start a conversation</span></a>
+    <div class="certs reveal">
+      <span class="certs__label">Certified</span>
+      <ul>
+        <li><b>Solutions Architect</b><span>AWS · Associate</span></li>
+        <li><b>Machine Learning Engineer</b><span>AWS · Associate</span></li>
+        <li><b>Data Engineer</b><span>AWS · Associate</span></li>
+        <li><b>Terraform</b><span>HashiCorp · Associate</span></li>
+        <li><b>Generative AI</b><span>Oracle · Professional</span></li>
+      </ul>
+    </div>
   </div>
+</section>
+
+<!-- ══ 07 · WRITING ═════════════════════════════════════════ -->
+<section class="writing" data-act="day">
+  <div class="wrap">
+    <header class="head">
+      <span class="tag">Writing</span>
+      <h2 class="head__title"><span class="m"><span>Thinking out loud</span></span></h2>
+    </header>
+    <ul class="reads">
+      <li class="reveal"><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">
+        <span class="reads__date">Jan 2025</span>
+        <span class="reads__t">From Scattered Data to Smart Insights: Build an End-to-End AWS ETL Pipeline</span>
+        <span class="reads__x">Read</span></a></li>
+      <li class="reveal"><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">
+        <span class="reads__date">Sep 2024</span>
+        <span class="reads__t">Unlocking the Secrets of AI: How Benchmarks Reveal the True Power of Large Language Models</span>
+        <span class="reads__x">Read</span></a></li>
+      <li class="reveal"><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">
+        <span class="reads__date">Jan 2022</span>
+        <span class="reads__t">Statistics for Data Science — Part One</span>
+        <span class="reads__x">Read</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ 08 · CONTACT — full daylight ═════════════════════════ -->
+<section class="contact" id="contact" data-act="day">
+  <div class="wrap">
+    <p class="contact__status"><i></i>Open to work · Toronto or remote</p>
+    <h2 class="contact__line">
+      <span class="m"><span>Tell me what's</span></span>
+      <span class="m"><span>breaking at scale.</span></span>
+    </h2>
+    <p class="contact__sub">Cloud architecture, data engineering, MLOps. If it involves making something large behave itself, I'd like to hear about it.</p>
+
+    <a class="mail" href="mailto:hire@meetshahdev.com?subject=Let%27s%20talk">
+      <span>hire@meetshahdev.com</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19L19 5M9 5h10v10"/></svg>
+    </a>
+
+    <ul class="elsewhere">
+      <li><a href="https://linkedin.com/in/meetjain" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/MeetJainAi" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">Medium</a></li>
+      <li><a href="tel:+16479893784">+1 647 989 3784</a></li>
+    </ul>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap foot__row">
+      <span>© <span id="yr">2026</span> Meet Shah</span>
+      <span>Designed and built in Toronto</span>
+    </div>
+  </footer>
 </section>
 
 </main>
 
-<footer class="foot">
-  <div class="foot__mark" aria-hidden="true">MEET SHAH</div>
-  <div class="foot__row">
-    <span>© <span id="year">2026</span> Meet Shah · Toronto, Canada</span>
-    <span class="foot__mid">built as an architecture diagram · no templates</span>
-    <a href="#top" data-cursor="top">back to root ↑</a>
-  </div>
-</footer>
-
 <script src="js/vendor/gsap.min.js" defer></script>
 <script src="js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="js/aurora.js" defer></script>
-<script src="js/network.js" defer></script>
+<script src="js/sky.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>
