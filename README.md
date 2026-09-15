@@ -4,7 +4,21 @@
 
 ## The concept
 
-Not a page. A map.
+Not a page. A map that plays itself.
+
+A pan-and-zoom canvas is interactive, but it is not *effortless* — it asks the
+visitor to work out the controls before they learn anything. So by default
+nobody has to touch it. **The camera flies the story on its own**: seven shots,
+captions arriving with each, and the one genuinely cinematic move — the
+12,164 km crossing — flown along the actual curve of the migration wire, pulling
+back to a wide shot at the midpoint.
+
+Touch anything and the tour steps aside instantly, leaving a fully explorable
+map. The chapter dots replay it. `prefers-reduced-motion` skips straight to
+explore mode. The contact button never leaves the corner, at any moment of any
+state.
+
+Underneath, it is still a map.
 
 Every previous version of this site was the same object re-skinned: ten stacked
 sections and one vertical scroll. This one has **no document scroll at all**.
@@ -35,6 +49,7 @@ css/fonts.css     self-hosted faces
 css/app.css       the interface
 js/world.js       the account: nodes, edges, regions, camera places
 js/map.js         camera, canvas renderer, pan/zoom/hit-test
+js/tour.js        the self-playing director: shots, captions, handover
 js/app.js         panels, index, keyboard
 fonts/            Bricolage Grotesque · Inter · JetBrains Mono · Instrument Serif
 ```

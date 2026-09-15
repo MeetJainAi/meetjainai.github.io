@@ -108,7 +108,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ── the hint ─────────────────────────────────────────── */
 .cue{
-  position:fixed;left:var(--pad);bottom:calc(var(--pad) + 4px);z-index:10;
+  position:fixed;left:var(--pad);bottom:calc(var(--pad) + 52px);z-index:10;
   display:flex;align-items:center;gap:12px;margin:0;
   font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
   color:rgba(var(--dim),1);transition:opacity .6s var(--ease);
@@ -154,6 +154,121 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (max-width:860px){.legend{animation-name:chromeIn}}
 /* skipping the beat brings the chrome with it */
 body.skipped .hud,body.skipped .legend,body.skipped .zoom,body.skipped .cue{animation-delay:.12s}
+
+
+/* ═══ THE TOUR ════════════════════════════════════════════
+   The page performs itself. Nobody has to learn a control to
+   get the story — the map is there underneath for whoever
+   wants it, and takes over the instant they touch anything.
+   ═══════════════════════════════════════════════════════ */
+
+.film{position:fixed;inset:0;z-index:12;pointer-events:none;display:flex;
+  align-items:flex-end;padding:var(--pad);padding-bottom:calc(var(--pad) + 96px)}
+/* the caption needs its own ground — otherwise node labels run straight
+   through the paragraph and both become unreadable */
+.film::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  transition:opacity .6s var(--ease);
+  background:linear-gradient(76deg,
+    rgba(3,3,12,.94) 0%, rgba(3,3,12,.82) 22%, rgba(3,3,12,.4) 44%, transparent 62%);
+}
+body.touring .film::before{opacity:1}
+.film__card{
+  max-width:min(560px,92vw);pointer-events:auto;
+  opacity:0;transform:translateY(22px);
+}
+.film__card.in{animation:cardIn .95s var(--ease) forwards}
+@keyframes cardIn{to{opacity:1;transform:none}}
+body:not(.touring) .film__card:not(.in){display:none}
+
+.film__k{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgb(var(--warm));margin:0 0 14px;
+  opacity:0;animation:cardBit .7s var(--ease) .1s forwards;
+}
+.film__t{
+  font-family:var(--display);font-variation-settings:"wght" 800,"wdth" 88;
+  font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:.98;letter-spacing:-.04em;margin:0 0 16px;
+  opacity:0;animation:cardBit .8s var(--ease) .2s forwards;
+  text-shadow:0 6px 40px rgba(0,0,0,.6);
+}
+.film__b{
+  max-width:46ch;color:rgba(var(--fg),.8);font-size:clamp(.95rem,1.25vw,1.06rem);
+  line-height:1.7;margin:0;
+  opacity:0;animation:cardBit .8s var(--ease) .34s forwards;
+  text-shadow:0 2px 20px rgba(0,0,0,.7);
+}
+.film__cta{
+  display:inline-flex;margin-top:22px;padding:14px 24px;border-radius:999px;
+  background:rgb(var(--warm));color:#05060F;font-weight:500;
+  font-family:var(--mono);font-size:13px;letter-spacing:.06em;
+  box-shadow:0 18px 44px -16px rgba(var(--warm),.85);
+  opacity:0;animation:cardBit .8s var(--ease) .5s forwards;
+  transition:transform .35s var(--ease);
+}
+.film__cta:hover{transform:translateY(-3px)}
+.film__cta[hidden]{display:none}
+@keyframes cardBit{to{opacity:1}}
+
+.film__bar{position:fixed;left:0;right:0;bottom:0;height:2px;z-index:14;
+  background:rgba(var(--fg),.08);pointer-events:none}
+.film__bar i{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);
+  background:linear-gradient(90deg,rgb(var(--acc)),rgb(var(--warm)))}
+
+.film__ctrl{
+  position:fixed;left:var(--pad);bottom:calc(var(--pad) + 4px);z-index:14;
+  display:flex;align-items:center;gap:14px;
+  animation:chromeIn .9s var(--ease) 2.9s both;
+}
+body.skipped .film__ctrl{animation-delay:.12s}
+.film__toggle{
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:rgba(var(--fg),.08);border:1px solid rgba(var(--fg),.16);
+  transition:background .3s,transform .3s var(--ease);
+}
+.film__toggle:hover{background:rgba(var(--fg),.16);transform:scale(1.06)}
+.film__toggle svg{width:17px;height:17px;fill:none;stroke:rgb(var(--fg));
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.film__toggle .ic-pause{display:none}
+.film__toggle .ic-play{display:block;fill:rgb(var(--fg));stroke:none}
+.film__toggle.playing .ic-pause{display:block}
+.film__toggle.playing .ic-play{display:none}
+
+.film__dots{display:flex;gap:7px}
+.film__dots button{
+  width:8px;height:8px;border-radius:50%;padding:0;
+  background:rgba(var(--fg),.22);transition:background .3s,transform .3s var(--ease);
+}
+.film__dots button:hover{background:rgba(var(--fg),.5);transform:scale(1.3)}
+.film__dots button.on{background:rgb(var(--warm));transform:scale(1.4)}
+
+.film__hint{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(var(--dim),1);transition:opacity .4s;
+}
+body.toured .film__hint{opacity:0}
+/* the old drag hint only ever competed with the tour control */
+.cue{display:none}
+
+/* While the tour runs, the map is the backdrop, not the interface.
+   These carry a chromeIn animation with fill-mode:both, and a running
+   animation beats a plain declaration in the cascade — so the animation
+   has to be cancelled, not just overridden. */
+body.touring .legend,body.touring .cue,body.touring .zoom{
+  animation:none;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+body.touring #stage{cursor:default}
+.legend,.cue,.zoom{transition:opacity .5s var(--ease)}
+/* a soft gradient so the caption always has something to sit on */
+body.touring .vignette{
+  background:radial-gradient(120% 95% at 50% 45%,transparent 30%,rgba(2,2,10,.86) 100%),
+             linear-gradient(0deg,rgba(2,2,10,.86) 0%,rgba(2,2,10,.3) 34%,transparent 58%);
+}
+
+@media (max-width:860px){
+  .film{padding-bottom:calc(var(--pad) + 108px);align-items:flex-end}
+  .film__ctrl{bottom:calc(var(--pad) + 2px)}
+  .film__hint{display:none}
+}
 
 /* ── the panel ────────────────────────────────────────── */
 .panel{
