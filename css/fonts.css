@@ -3,20 +3,6 @@
    of the page can be read. Latin subsets only. */
 
 @font-face{
-  font-family:'Bodoni Moda';
-  font-style:normal;
-  font-weight:400 700;
-  font-display:swap;
-  src:url('../fonts/bodoni-roman.woff2') format('woff2');
-}
-@font-face{
-  font-family:'Bodoni Moda';
-  font-style:italic;
-  font-weight:400 600;
-  font-display:swap;
-  src:url('../fonts/bodoni-italic.woff2') format('woff2');
-}
-@font-face{
   font-family:'Inter';
   font-style:normal;
   font-weight:300 600;
@@ -29,4 +15,19 @@
   font-weight:400 500;
   font-display:swap;
   src:url('../fonts/jbmono.woff2') format('woff2');
+}
+
+@font-face{
+  font-family:'Bricolage Grotesque';
+  font-style:normal;
+  font-weight:400 800;
+  font-display:swap;
+  src:url('../fonts/bricolage.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Instrument Serif';
+  font-style:italic;
+  font-weight:400;
+  font-display:swap;
+  src:url('../fonts/instrument-italic.woff2') format('woff2');
 }

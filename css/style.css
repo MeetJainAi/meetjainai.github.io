@@ -24,11 +24,15 @@
   --rule:rgba(255,255,255,.10);
   --accent:#6E7FF3;
   --glow:0;            /* 0 night → 1 day, used for warmth effects */
+  --card:#181236;      /* real card surface, interpolated per act */
+  --shadow:0;          /* 0 dark acts → 1 daylight */
 
-  /* A Didone. Stroke contrast is the single strongest "expensive"
-     signal in type, and Bodoni Moda carries an optical-size axis —
-     at display sizes the hairlines thin out on their own. */
-  --serif:"Bodoni Moda",Didot,"Bodoni MT",Georgia,serif;
+  /* Expressive, not delicate. Bricolage Grotesque carries weight,
+     width and optical-size axes, so display type can be genuinely
+     heavy and still tighten up as it scales. Instrument Serif italic
+     is kept for one job only: the emphasis inside a headline. */
+  --display:"Bricolage Grotesque",-apple-system,"Segoe UI",sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
   --sans:"Inter",system-ui,-apple-system,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
 
@@ -152,8 +156,7 @@ main{will-change:transform}
   font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--dim);text-transform:uppercase;
 }
 .hero__line{
-  font-family:var(--serif);font-optical-sizing:auto;
-  font-variation-settings:"opsz" 96;      /* push the contrast axis */
+  font-family:var(--display);font-variation-settings:"wght" 800,"wdth" 92;      /* push the contrast axis */
   font-size:clamp(3rem,10.2vw,10.4rem);
   font-weight:400;line-height:.94;letter-spacing:-.028em;
 }
@@ -161,7 +164,8 @@ main{will-change:transform}
 .hero__line .l2{margin-left:clamp(0px,3.2vw,72px)}
 .hero__line .l3{margin-left:clamp(0px,7.4vw,164px)}
 .hero__line em{
-  font-style:italic;font-weight:400;color:var(--accent);
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-variation-settings:normal;letter-spacing:-.02em;color:var(--accent);
   /* the accent line is the only lit thing on the screen */
   text-shadow:0 0 44px color-mix(in srgb,var(--accent) 34%,transparent);
 }
@@ -201,7 +205,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
   padding:clamp(70px,12vw,150px) var(--gut);
 }
 .beat__line{
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-size:clamp(1.7rem,4.6vw,3.8rem);line-height:1.24;letter-spacing:-.022em;
   max-width:22ch;text-align:center;text-wrap:balance;
 }
@@ -215,7 +219,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .head--center{max-width:none;text-align:center}
 .head--center .tag{color:var(--accent)}
 .head__title{
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-variation-settings:"opsz" 80;
   font-size:clamp(2.2rem,6.8vw,5.8rem);line-height:1;letter-spacing:-.028em;
 }
@@ -283,7 +287,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .crossing__copy{max-width:56ch;margin-left:auto}
 .crossing__copy p{margin-bottom:1.5em;color:var(--dim)}
 .crossing__copy .lede{
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;color:var(--fg);
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;color:var(--fg);
   font-size:clamp(1.35rem,2.9vw,2.1rem);line-height:1.32;letter-spacing:-.025em;margin-bottom:1em;
 }
 
@@ -316,7 +320,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
   padding:3px 9px;border-radius:3px;margin-bottom:14px;
 }
 .stop__flag--quiet{color:var(--dim);border-color:var(--rule)}
-.stop h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,2.5vw,1.85rem);line-height:1.2;letter-spacing:-.025em}
+.stop h3{font-family:var(--display);font-weight:800;font-size:clamp(1.25rem,2.5vw,1.85rem);line-height:1.2;letter-spacing:-.025em}
 .stop__org{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);margin:8px 0 16px}
 .stop__body > p:last-of-type{color:var(--dim);max-width:56ch}
 @media (max-width:760px){.stop{grid-template-columns:1fr;gap:10px}}
@@ -333,13 +337,13 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .piece--flip .piece__viz{order:1}
 
 .piece__n{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--accent);margin-bottom:18px}
-.piece__title{font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+.piece__title{font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-size:clamp(1.9rem,4.6vw,3.6rem);line-height:1.04;letter-spacing:-.026em;margin-bottom:24px}
 .piece__lede{font-size:clamp(1.05rem,1.5vw,1.28rem);line-height:1.6;max-width:44ch;margin-bottom:1.1em}
 .piece__main > p:not(.piece__lede){color:var(--dim);max-width:52ch}
 .piece__main .chips{margin-top:24px}
 .figs{display:flex;flex-wrap:wrap;gap:clamp(26px,4.4vw,64px);margin-top:clamp(28px,3.6vw,44px)}
-.figs dt{font-family:var(--serif);font-weight:400;font-optical-sizing:auto;font-size:clamp(2.1rem,4.2vw,3.2rem);line-height:1;letter-spacing:-.03em;color:var(--accent)}
+.figs dt{font-family:var(--display);font-weight:800;font-optical-sizing:auto;font-size:clamp(2.1rem,4.2vw,3.2rem);line-height:1;letter-spacing:-.03em;color:var(--accent)}
 .figs dd{margin:8px 0 0;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 
 .piece__viz{position:sticky;top:16vh}
@@ -374,7 +378,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .figures{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border-block:1px solid var(--rule)}
 .fig{background:var(--bg);padding:clamp(30px,4.4vw,58px) clamp(20px,2.6vw,34px);display:flex;flex-direction:column;gap:12px}
 .fig b{
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-variation-settings:"opsz" 96;
   font-size:clamp(3.2rem,8vw,6.6rem);line-height:.88;
   letter-spacing:-.036em;color:var(--accent);font-variant-numeric:tabular-nums;
@@ -419,7 +423,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .certs{margin-top:clamp(48px,6vw,88px);padding-top:clamp(32px,4vw,52px);border-top:1px solid var(--rule)}
 .certs__label{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
 .certs ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:26px 32px;margin-top:26px}
-.certs b{display:block;font-family:var(--serif);font-weight:500;font-size:1.15rem;letter-spacing:-.02em}
+.certs b{display:block;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
 .certs span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);margin-top:5px;display:block}
 
 /* ═══ 07 · WRITING ════════════════════════════════════════ */
@@ -432,7 +436,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 }
 .reads a:hover{padding-left:20px}
 .reads__date{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim)}
-.reads__t{font-family:var(--serif);font-weight:400;font-size:clamp(1.1rem,2.2vw,1.7rem);line-height:1.28;letter-spacing:-.025em;transition:color .4s}
+.reads__t{font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,2.2vw,1.7rem);line-height:1.28;letter-spacing:-.025em;transition:color .4s}
 .reads a:hover .reads__t{color:var(--accent)}
 .reads__x{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
 @media (max-width:720px){.reads a{grid-template-columns:1fr auto}.reads__date{grid-column:1/-1}}
@@ -443,14 +447,14 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .contact__status i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:beat 2.4s var(--ease) infinite}
 @keyframes beat{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.72)}}
 .contact__line{
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-variation-settings:"opsz" 96;
   font-size:clamp(2.5rem,8.4vw,7.6rem);line-height:.96;letter-spacing:-.03em;
 }
 .contact__sub{margin-top:clamp(24px,3vw,38px);max-width:46ch;color:var(--dim)}
 .mail{
   display:inline-flex;align-items:center;gap:16px;margin-top:clamp(36px,5vw,64px);
-  font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,3.4vw,2.6rem);letter-spacing:-.03em;
+  font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3.4vw,2.6rem);letter-spacing:-.03em;
   padding-bottom:10px;border-bottom:1px solid var(--rule);transition:border-color .45s,gap .45s var(--ease);
 }
 .mail:hover{border-bottom-color:var(--accent);gap:24px}
@@ -461,6 +465,149 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 .foot{margin-top:clamp(70px,10vw,140px);border-top:1px solid var(--rule);padding:26px 0 30px}
 .foot__row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 
+
+
+/* ═══ BOLD LAYER ══════════════════════════════════════════
+   Saturated colour, big shapes, bento partitions and filled
+   cards. The previous version was hairline outlines on flat
+   ground; this one has weight and surface.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── the big shape ────────────────────────────────────── */
+.hero__orb{
+  position:absolute;z-index:1;pointer-events:none;
+  right:clamp(-16vw,-6vw,0px);top:50%;transform:translateY(-52%);
+  width:clamp(420px,58vw,880px);aspect-ratio:1;
+  filter:blur(.2px) saturate(1.12);
+}
+.hero__orb canvas{width:100%;height:100%;display:block}
+.hero__inner{position:relative;z-index:2;mix-blend-mode:normal}
+/* the headline rides over the orb, so it needs its own ground */
+.hero__line{text-shadow:0 8px 60px rgba(0,0,0,.42)}
+@media (max-width:900px){
+  .hero__orb{right:-24vw;top:16%;transform:none;width:120vw;opacity:.85}
+}
+
+/* ── filled cards, not outlines ───────────────────────── */
+.surface{
+  background:
+    linear-gradient(160deg,
+      color-mix(in srgb,var(--accent) 13%,transparent),
+      color-mix(in srgb,var(--accent) 2%,transparent) 58%),
+    color-mix(in srgb,var(--fg) 5%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);
+  border-radius:20px;
+}
+
+/* ── BENTO: the toolkit becomes partitioned compartments ── */
+.cols{
+  display:grid;gap:14px;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  grid-auto-rows:minmax(150px,auto);
+}
+.col{
+  padding:clamp(20px,2.4vw,30px);border-radius:20px;
+  background:
+    linear-gradient(155deg,
+      color-mix(in srgb,var(--accent) 13%,transparent),
+      transparent 62%),
+    var(--card);
+  border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
+  box-shadow:0 calc(var(--shadow) * 18px) calc(var(--shadow) * 44px) calc(var(--shadow) * -18px) rgba(60,20,30,.28);
+  transition:transform .45s var(--ease),border-color .45s,box-shadow .45s;
+}
+.col:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 48%,transparent)}
+/* deliberately uneven compartments — a bento, not a table */
+.col:nth-child(1){grid-column:span 3}
+.col:nth-child(2){grid-column:span 3}
+.col:nth-child(3){grid-column:span 2}
+.col:nth-child(4){grid-column:span 2}
+.col:nth-child(5){grid-column:span 2}
+.col:nth-child(6){grid-column:span 6}
+.col h3{border-bottom:0;padding-bottom:0;margin-bottom:12px}
+.col p{color:var(--fg);opacity:.78}
+@media (max-width:900px){
+  .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .col:nth-child(n){grid-column:span 2}
+}
+
+/* ── metrics become colour blocks ─────────────────────── */
+.figures{gap:14px;background:none;border:0}
+.fig{
+  border-radius:20px;padding:clamp(26px,3.4vw,44px);
+  background:
+    linear-gradient(158deg,
+      color-mix(in srgb,var(--accent) 20%,transparent),
+      transparent 66%),
+    var(--card);
+  border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);
+  box-shadow:0 calc(var(--shadow) * 20px) calc(var(--shadow) * 50px) calc(var(--shadow) * -20px) rgba(60,20,30,.3);
+  transition:transform .5s var(--ease),border-color .5s,box-shadow .5s;
+}
+.fig:hover{transform:translateY(-6px) scale(1.012);border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.fig b{color:var(--accent);text-shadow:0 0 44px color-mix(in srgb,var(--accent) 45%,transparent)}
+.fig span{color:var(--fg);opacity:.72}
+
+/* ── project pieces get a surface and a colour wash ───── */
+.piece{border-top:0;padding:clamp(22px,3vw,40px) 0}
+.piece__grid{
+  padding:clamp(28px,3.6vw,58px);border-radius:26px;
+  background:
+    radial-gradient(120% 90% at 82% 8%,
+      color-mix(in srgb,var(--accent) 17%,transparent), transparent 62%),
+    var(--card);
+  border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);
+  box-shadow:0 calc(var(--shadow) * 24px) calc(var(--shadow) * 60px) calc(var(--shadow) * -22px) rgba(60,20,30,.26);
+}
+.piece--flip .piece__grid{background:
+  radial-gradient(120% 90% at 18% 8%,
+    color-mix(in srgb,var(--accent) 17%,transparent), transparent 62%),
+  var(--card)}
+
+/* ── chips gain fill ──────────────────────────────────── */
+.chips li{
+  background:color-mix(in srgb,var(--accent) 12%,transparent);
+  border-color:color-mix(in srgb,var(--accent) 26%,transparent);
+  color:var(--fg);opacity:.86;border-radius:999px;padding:5px 12px;
+}
+
+/* ── the timeline stops get surfaces too ──────────────── */
+.stop{border-bottom:0;padding-bottom:clamp(20px,3vw,34px)}
+.stop__body{
+  padding:clamp(20px,2.4vw,30px);border-radius:20px;
+  background:
+    linear-gradient(160deg,
+      color-mix(in srgb,var(--accent) 11%,transparent),
+      transparent 64%),
+    var(--card);
+  border:1px solid color-mix(in srgb,var(--accent) 16%,transparent);
+  box-shadow:0 calc(var(--shadow) * 14px) calc(var(--shadow) * 36px) calc(var(--shadow) * -16px) rgba(60,20,30,.24);
+  transition:border-color .45s,transform .45s var(--ease);
+}
+.stop:hover .stop__body{border-color:color-mix(in srgb,var(--accent) 40%,transparent);transform:translateX(4px)}
+.stop--now .stop__body{border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+
+/* ── reads rows get a fill on hover ───────────────────── */
+.reads a{border-radius:16px;padding-inline:clamp(12px,1.6vw,22px)}
+.reads a:hover{background:color-mix(in srgb,var(--accent) 12%,transparent);padding-left:clamp(22px,2.6vw,34px)}
+
+/* ── the mail link becomes a filled button ────────────── */
+.mail{
+  border-bottom:0;border-radius:999px;
+  padding:clamp(14px,1.6vw,20px) clamp(24px,2.6vw,38px);
+  background:var(--accent);color:var(--bg);
+  transition:transform .4s var(--ease),box-shadow .4s,gap .4s var(--ease);
+  box-shadow:0 18px 50px -18px color-mix(in srgb,var(--accent) 75%,transparent);
+}
+.mail:hover{transform:translateY(-3px);gap:24px;
+  box-shadow:0 26px 60px -18px color-mix(in srgb,var(--accent) 85%,transparent)}
+.mail svg{stroke:var(--bg)}
+/* the filled pill cannot hold a 20-character address at 320px */
+@media (max-width:560px){
+  .mail{font-size:clamp(.92rem,4.4vw,1.25rem);padding:14px 20px;gap:10px;max-width:100%}
+  .mail span{overflow-wrap:anywhere;min-width:0}
+  .mail svg{width:16px}
+}
 
 /* ═══ ART DIRECTION ═══════════════════════════════════════
    An identity system rather than a set of tasteful defaults:
@@ -483,7 +630,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 /* ── folio numerals ───────────────────────────────────── */
 .folio{
   position:absolute;left:calc(var(--gut) * -0.42);top:clamp(46px,7vw,104px);
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-size:clamp(11rem,29vw,27rem);line-height:.68;letter-spacing:-.05em;
   color:transparent;-webkit-text-stroke:1px var(--rule);
   pointer-events:none;user-select:none;z-index:0;
@@ -500,7 +647,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 }
 .foot__wordmark span{
   display:block;white-space:nowrap;
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-variation-settings:"opsz" 96;
   /* deliberately wider than the viewport — it is meant to be cut */
   font-size:24.5vw;line-height:.78;letter-spacing:-.045em;
@@ -511,7 +658,7 @@ body.pointed .hero__hint{opacity:0;transition:opacity .5s ease;animation:none}
 /* ── project numerals overlap their own titles ────────── */
 .piece__n{
   position:relative;display:block;z-index:1;
-  font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
+  font-family:var(--display);font-weight:800;font-optical-sizing:auto;
   font-size:clamp(3.4rem,7vw,6rem);line-height:.8;letter-spacing:-.04em;
   color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--accent) 60%,transparent);
   margin-bottom:-.2em;margin-left:-.015em;

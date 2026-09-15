@@ -25,15 +25,20 @@
   // Each act is a complete palette. Contrast was checked at every
   // stop: fg-on-bg never drops below 11:1, dim-on-bg never below 4.6:1.
   var ACTS = {
-    // One accent family, travelling cool steel → brass → bronze as the
-    // light turns. Five competing hues read cheap; a single hue moving
-    // in temperature reads like an actual sunrise.
-    // Contrast checked at every stop: fg/bg never below 11:1, dim never below 4.6:1.
-    night: { bg:[  6,  8, 14], fg:[237,239,245], dim:[132,142,163], acc:[116,151,208], rule:0.10, glow:0 },
-    deep:  { bg:[ 10, 12, 19], fg:[236,237,243], dim:[136,143,160], acc:[146,159,205], rule:0.11, glow:0 },
-    dusk:  { bg:[ 20, 17, 21], fg:[241,236,236], dim:[152,141,142], acc:[199,159,134], rule:0.12, glow:0.15 },
-    dawn:  { bg:[ 36, 25, 22], fg:[250,240,231], dim:[178,152,135], acc:[214,163, 92], rule:0.15, glow:0.35 },
-    day:   { bg:[243,239,231], fg:[ 24, 20, 17], dim:[108, 99, 88], acc:[150, 96, 40], rule:0.14, glow:1, dark:true }
+    // Saturated, not muted. Each act is a real colour position, and the
+    // orb takes three stops from the same act so the big shape always
+    // belongs to the light it is sitting in.
+    // Contrast held: fg/bg never below 11:1, dim never below 4.5:1.
+    night: { bg:[ 10,  7, 28], fg:[240,238,255], dim:[145,140,185], acc:[ 92,132,255], rule:0.14, glow:0, card:[ 24, 19, 54], shadow:0,
+             orb:[[ 62,110,255],[150, 84,255],[255, 92,150]] },
+    deep:  { bg:[ 18,  9, 46], fg:[238,234,255], dim:[152,142,195], acc:[139, 99,255], rule:0.16, glow:0, card:[ 32, 21, 70], shadow:0,
+             orb:[[ 92, 84,255],[196, 74,240],[255,104,132]] },
+    dusk:  { bg:[ 42, 13, 56], fg:[252,236,248], dim:[190,150,190], acc:[255, 92,166], rule:0.18, glow:0.18, card:[ 60, 25, 78], shadow:0,
+             orb:[[178, 62,235],[255, 78,150],[255,150, 92]] },
+    dawn:  { bg:[ 61, 20, 38], fg:[255,238,226], dim:[214,160,140], acc:[255,122, 56], rule:0.2, glow:0.4, card:[ 82, 33, 56], shadow:0,
+             orb:[[255, 86,120],[255,138, 48],[255,206,102]] },
+    day:   { bg:[255,247,236], fg:[ 26, 12, 38], dim:[113, 92,120], acc:[224, 58, 44], rule:0.16, glow:1, dark:true, card:[255,253,250], shadow:1,
+             orb:[[255,120, 60],[255, 72,120],[128, 84,255]] }
   };
 
   // Narrative stops. `at` is a fraction through the named section —
@@ -108,6 +113,13 @@
 
     dayProgress = lerp(A.glow, B.glow, t);
     s.setProperty('--glow', dayProgress.toFixed(3));
+
+    // the big shape belongs to whatever light it is sitting in
+    for (var k = 0; k < 3; k++) {
+      s.setProperty('--orb' + (k + 1), mixRGB(A.orb[k], B.orb[k], t));
+    }
+    s.setProperty('--card', mixRGB(A.card, B.card, t));
+    s.setProperty('--shadow', lerp(A.shadow, B.shadow, t).toFixed(3));
 
     // the browser chrome should follow the sky too
     if (themeMeta) themeMeta.setAttribute('content', mixRGB(A.bg, B.bg, t));
