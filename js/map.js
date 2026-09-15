@@ -24,6 +24,7 @@ window.MAP = (function () {
   var Z_MIN = 0.22, Z_MAX = 2.0;
 
   var drag = null, hover = null, active = null, moved = 0, touched = false;
+  var userInput = function () {};
   var onSelect = function () {};
 
   /* ── entrance ──────────────────────────────────────────── */
@@ -318,14 +319,17 @@ window.MAP = (function () {
     if (active) drawNode(active, t);
   }
 
+  var driven = false;      // true while the tour is holding the camera
   function tick(t) {
     requestAnimationFrame(tick);
     if (!born) born = t;
     var el = (t - born) / (reduce ? 1 : 2100);
     intro = Math.min(1, Math.max(0, el));
-    cam.x += (want.x - cam.x) * 0.12;
-    cam.y += (want.y - cam.y) * 0.12;
-    cam.z += (want.z - cam.z) * 0.12;
+    if (!driven) {
+      cam.x += (want.x - cam.x) * 0.12;
+      cam.y += (want.y - cam.y) * 0.12;
+      cam.z += (want.z - cam.z) * 0.12;
+    }
     refreshPalette();
     draw(t);
   }
@@ -348,7 +352,7 @@ window.MAP = (function () {
   function bind() {
     canvas.addEventListener('pointerdown', function (e) {
       canvas.setPointerCapture(e.pointerId);
-      touched = true;
+      touched = true; userInput();
       drag = { x: e.clientX, y: e.clientY, cx: want.x, cy: want.y };
       moved = 0;
       canvas.classList.add('grabbing');
@@ -376,14 +380,14 @@ window.MAP = (function () {
     canvas.addEventListener('pointerleave', function () { hover = null; });
 
     canvas.addEventListener('wheel', function (e) {
-      e.preventDefault(); touched = true;
+      e.preventDefault(); touched = true; userInput();
       zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.12 : 1 / 1.12);
     }, { passive: false });
 
     var pinch = null;
     function dist(tt) { return Math.hypot(tt[0].clientX - tt[1].clientX, tt[0].clientY - tt[1].clientY) || 1; }
     canvas.addEventListener('touchstart', function (e) {
-      if (e.touches.length === 2) { pinch = dist(e.touches); drag = null; touched = true; }
+      if (e.touches.length === 2) { pinch = dist(e.touches); drag = null; touched = true; userInput(); }
     }, { passive: true });
     canvas.addEventListener('touchmove', function (e) {
       if (e.touches.length === 2 && pinch) {
@@ -424,7 +428,32 @@ window.MAP = (function () {
     },
     fit: function () { touched = true; fitTo(); },
     select: function (n) { active = n; },
+    // the tour drives the camera frame-accurately; nothing eases behind it
+    setCam: function (x, y, z) {
+      driven = true;
+      cam.x = want.x = x; cam.y = want.y = y; cam.z = want.z = z;
+    },
+    release: function () { driven = false; },
+    onUserInput: function (fn) { userInput = fn; },
+    node: function (id) { return W.byId[id]; },
+    edgeCurve: function (aId, bId) {
+      for (var i = 0; i < W.edges.length; i++) {
+        var e = W.edges[i];
+        if ((e.a.id === aId && e.b.id === bId) || (e.a.id === bId && e.b.id === aId)) {
+          var c = control(e);
+          var fwd = e.a.id === aId;
+          return function (t) {
+            var tt = fwd ? t : 1 - t;
+            var u = 1 - tt;
+            return [u*u*e.a.x + 2*u*tt*c[0] + tt*tt*e.b.x,
+                    u*u*e.a.y + 2*u*tt*c[1] + tt*tt*e.b.y];
+          };
+        }
+      }
+      return null;
+    },
     zoomBy: function (f) { touched = true; zoomAt(VW / 2, VH / 2, f); },
-    get active() { return active; }
+    get active() { return active; },
+    get cam() { return cam; }
   };
 })();

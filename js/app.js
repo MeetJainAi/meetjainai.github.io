@@ -12,6 +12,7 @@
   var legend  = document.querySelectorAll('.legend button');
 
   function open(node) {
+    if (window.TOUR && TOUR.isPlaying()) return;   // the tour owns the camera
     if (!node) return close();
     var src = bodies.querySelector('#' + node.panel);
     if (!src) return close();
@@ -51,6 +52,18 @@
   });
 
   MAP.init(document.getElementById('stage'), open);
+
+  // the tour runs itself until the reader takes over
+  TOUR.init({
+    card:   document.getElementById('tCard'),
+    k:      document.getElementById('tK'),
+    t:      document.getElementById('tT'),
+    b:      document.getElementById('tB'),
+    cta:    document.getElementById('tCta'),
+    bar:    document.getElementById('tBar'),
+    toggle: document.getElementById('tToggle'),
+    dots:   Array.prototype.slice.call(document.querySelectorAll('#tDots button'))
+  });
 
   // the index flies the camera rather than scrolling anything
   legend.forEach(function (b) {

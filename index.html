@@ -40,6 +40,37 @@
 </header>
 
 <!-- ── the index: flies the camera ──────────────────────── -->
+<!-- ── the tour ─────────────────────────────────────────── -->
+<section class="film" aria-label="Guided tour">
+  <div class="film__card" id="tCard">
+    <p class="film__k" id="tK"></p>
+    <h2 class="film__t" id="tT"></h2>
+    <p class="film__b" id="tB"></p>
+    <a class="film__cta" id="tCta" href="mailto:hire@meetshahdev.com" hidden>hire@meetshahdev.com ↗</a>
+  </div>
+</section>
+
+<div class="film__bar" aria-hidden="true"><i id="tBar"></i></div>
+
+<div class="film__ctrl">
+  <button class="film__toggle playing" id="tToggle" aria-label="Pause tour">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path class="ic-pause" d="M9 5v14M15 5v14"/>
+      <path class="ic-play" d="M8 5l12 7-12 7z"/>
+    </svg>
+  </button>
+  <ol class="film__dots" id="tDots" aria-label="Chapters">
+    <li><button data-shot="0" aria-label="Origin"></button></li>
+    <li><button data-shot="1" aria-label="The crossing"></button></li>
+    <li><button data-shot="2" aria-label="The restart"></button></li>
+    <li><button data-shot="3" aria-label="The climb"></button></li>
+    <li><button data-shot="4" aria-label="Stacks"></button></li>
+    <li><button data-shot="5" aria-label="Certifications"></button></li>
+    <li><button data-shot="6" aria-label="Contact"></button></li>
+  </ol>
+  <span class="film__hint">or explore it yourself</span>
+</div>
+
 <nav class="legend" aria-label="Jump to">
   <button data-place="all" class="on">Overview</button>
   <button data-place="mobiuso">Origin</button>
@@ -204,6 +235,7 @@
 
 <script src="js/world.js" defer></script>
 <script src="js/map.js" defer></script>
+<script src="js/tour.js" defer></script>
 <script src="js/app.js" defer></script>
 </body>
 </html>
