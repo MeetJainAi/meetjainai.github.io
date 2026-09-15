@@ -2,382 +2,202 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 <title>Meet Shah — AWS Cloud Architect</title>
-<meta name="description" content="Meet Shah, AWS Certified Solutions Architect in Toronto. Serverless architecture, ETL pipelines, Terraform, and cloud cost optimization. I build the infrastructure you never see." />
+<meta name="description" content="Meet Shah, AWS Certified Solutions Architect in Toronto. A portfolio you explore like an architecture diagram: two regions, one migration, the stacks in between." />
 <meta name="author" content="Meet Shah" />
-<meta name="theme-color" content="#05070C" />
+<meta name="theme-color" content="#05060F" />
 <link rel="canonical" href="https://meetjainai.github.io/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Meet Shah — AWS Cloud Architect" />
-<meta property="og:description" content="I build the infrastructure you never see." />
+<meta property="og:description" content="A career deployed as a cloud account. Pan, zoom, open a node." />
 <meta property="og:url" content="https://meetjainai.github.io/" />
 <meta name="twitter:card" content="summary_large_image" />
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2305070C'/%3E%3Ccircle cx='50' cy='62' r='20' fill='none' stroke='%23E8863C' stroke-width='7'/%3E%3Cpath d='M18 62h64' stroke='%23E8863C' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E" />
-
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2305060F'/%3E%3Ccircle cx='32' cy='32' r='13' fill='none' stroke='%23FF8A40' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23FF8A40'/%3E%3C/svg%3E" />
 <link rel="preload" href="fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="css/fonts.css" />
-<link rel="stylesheet" href="css/style.css" />
-<noscript><style>
-  .stars,.horizon{display:none!important}
-  .reveal,.rise > *,[data-words] .wd{opacity:1!important;transform:none!important;clip-path:none!important}
-  :root{--bg:#0A0A12;--fg:#EDEFF5;--dim:#9AA2B4;--rule:rgba(255,255,255,.12);--accent:#E8863C}
-  .break{display:none!important}
-</style></noscript>
+<link rel="stylesheet" href="css/app.css" />
 </head>
 <body>
 
+<canvas id="stage" aria-label="Interactive map of Meet Shah's career, laid out as cloud infrastructure"></canvas>
+<div class="vignette" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
-<canvas class="stars" id="stars" aria-hidden="true"></canvas>
-<div class="paper" aria-hidden="true"></div>
 
-<!-- ── persistent chrome ───────────────────────────────────── -->
+<!-- ── identity ─────────────────────────────────────────── -->
 <header class="hud">
-  <a class="hud__mark" href="#top" aria-label="Meet Shah — back to top"><svg class="mark" viewBox="0 0 64 40" aria-hidden="true">
-      <defs><clipPath id="mkClipHud"><rect class="mark__rise" x="0" y="40" width="64" height="40"/></clipPath></defs>
-      <line class="mark__rule" x1="0" y1="28" x2="64" y2="28"/>
-      <circle class="mark__ring" cx="32" cy="28" r="11"/>
-      <circle class="mark__fill" cx="32" cy="28" r="11" clip-path="url(#mkClipHud)"/>
-    </svg></a>
-  <a class="hud__name" href="#top">Meet Shah</a>
-  <span class="hud__role">AWS Cloud Architect</span>
-  <div class="hud__right">
-    <span class="hud__time" id="hudTime" aria-hidden="true">04:12</span>
-    <span class="hud__place">Toronto</span>
+  <div class="hud__id">
+    <svg class="mark" viewBox="0 0 64 40" aria-hidden="true">
+      <line x1="0" y1="28" x2="64" y2="28"/><circle cx="32" cy="28" r="11"/><circle cx="32" cy="28" r="3.6" class="dot"/>
+    </svg>
+    <div>
+      <strong>Meet Shah</strong>
+      <span>AWS Cloud Architect · Toronto</span>
+    </div>
   </div>
+  <a class="hud__cta" href="mailto:hire@meetshahdev.com" aria-label="Open to work — email Meet Shah"><i></i><span>Open to work</span></a>
 </header>
 
-<a class="skip" href="#work">Skip to the work</a>
-
-<nav class="dots" aria-label="Sections">
-  <a href="#top"      data-label="Start"><i></i></a>
-  <a href="#crossing" data-label="The crossing"><i></i></a>
-  <a href="#path"     data-label="The path"><i></i></a>
-  <a href="#work"     data-label="The work"><i></i></a>
-  <a href="#moved"    data-label="What it moved"><i></i></a>
-  <a href="#toolkit"  data-label="Toolkit"><i></i></a>
-  <a href="#contact"  data-label="Contact"><i></i></a>
+<!-- ── the index: flies the camera ──────────────────────── -->
+<nav class="legend" aria-label="Jump to">
+  <button data-place="all" class="on">Overview</button>
+  <button data-place="mobiuso">Origin</button>
+  <button data-place="lambton">The move</button>
+  <button data-place="engineer">The work</button>
+  <button data-place="etl">Stacks</button>
+  <button data-place="c3">Certified</button>
+  <button data-place="w2">Writing</button>
+  <button data-place="contact">Contact</button>
 </nav>
 
-<main id="top">
+<div class="zoom" aria-hidden="true">
+  <button id="zin"  aria-label="Zoom in">+</button>
+  <button id="zout" aria-label="Zoom out">−</button>
+</div>
 
-<!-- ══ 00 · HERO ════════════════════════════════════════════ -->
-<section class="hero" data-act="night">
-  <canvas class="hero__grid" id="heroGrid" aria-hidden="true"></canvas>
-  <div class="hero__orb" aria-hidden="true"><canvas id="orb"></canvas></div>
+<p class="cue" id="cue"><span>Drag to explore</span><i></i><span>Click a node</span></p>
 
-  <div class="wrap hero__inner">
-    <p class="hero__eyebrow rise"><span>Toronto, Canada</span><span>·</span><span>Five AWS &amp; HashiCorp certifications</span></p>
-    <h1 class="hero__line">
-      <span class="m l1"><span>I build the</span></span>
-      <span class="m l2"><span>infrastructure</span></span>
-      <span class="m l3"><span><em>you never see.</em></span></span>
-    </h1>
-    <p class="hero__sub rise">
-      Serverless architecture, data pipelines and the unglamorous
-      arithmetic of what a cloud actually costs.
-    </p>
-  </div>
+<!-- ── the panel ────────────────────────────────────────── -->
+<aside class="panel" id="panel" aria-live="polite">
+  <button class="panel__x" id="panelX" aria-label="Close">×</button>
+  <div class="panel__in" id="panelIn"></div>
+</aside>
 
-  <div class="hero__foot" aria-hidden="true">
-    <div class="hero__cue"><span>Scroll</span><i></i></div>
-    <div class="hero__hint"><i></i><span>Move to reveal it</span></div>
-  </div>
-</section>
+<!-- ── panel bodies ─────────────────────────────────────── -->
+<div hidden id="bodies">
 
-<!-- ══ 01 · PREMISE — a held beat ═══════════════════════════ -->
-<section class="beat" data-act="night">
-  <p class="beat__line" data-words>
-    Nobody celebrates a cloud bill that drops 25%.
-    They just quietly stop worrying about it.
-  </p>
-</section>
-
-<!-- ══ 02 · THE CROSSING — peak one ═════════════════════════ -->
-<section class="crossing" id="crossing" data-act="deep">
-  <span class="folio" aria-hidden="true">01</span>
-  <div class="wrap">
-    <span class="tag">Chapter one</span>
-
-    <figure class="arc">
-      <svg viewBox="0 0 900 360" role="img" aria-label="A 12,164 kilometre arc from Vadodara, India to Toronto, Canada">
-        <g class="arc__grid" aria-hidden="true">
-          <path d="M0 90H900M0 150H900M0 210H900M0 270H900"/>
-        </g>
-        <path class="arc__path" d="M150 268 C 330 40, 620 40, 780 150" pathLength="1"/>
-        <g class="arc__pt arc__pt--a">
-          <circle cx="150" cy="268" r="4.5"/>
-          <text x="150" y="304">VADODARA</text>
-          <text x="150" y="322" class="arc__co">22.31°N  73.18°E</text>
-        </g>
-        <g class="arc__pt arc__pt--b">
-          <circle cx="780" cy="150" r="4.5"/>
-          <text x="828" y="186">TORONTO</text>
-          <text x="828" y="204" class="arc__co">43.65°N  79.38°W</text>
-        </g>
-        <text class="arc__dist" x="472" y="56">12,164 km</text>
-      </svg>
-    </figure>
-
-    <div class="crossing__copy">
-      <p class="lede" data-words>In 2022 I left a software engineering job in India, moved to Toronto, and enrolled as a student again.</p>
-      <p data-words>A year later I started at a cloud consultancy as an intern — a title I had already outgrown once. It was the fastest way back to the work I actually wanted, so I took it.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 03 · THE PATH ════════════════════════════════════════ -->
-<section class="path" id="path" data-act="deep">
-  <span class="folio" aria-hidden="true">02</span>
-  <div class="wrap">
-    <header class="head">
-      <span class="tag">Chapter two</span>
-      <h2 class="head__title"><span class="m"><span>The long way</span></span></h2>
-      <p class="head__note">Nine years, two countries, one restart.</p>
-    </header>
-
-    <ol class="track"><div class="track__fill" aria-hidden="true"></div>
-      <li class="stop reveal">
-        <span class="stop__year">2016<i>—</i>20</span>
-        <div class="stop__body">
-          <h3>B.Tech, Computer Science</h3>
-          <p class="stop__org">Parul University · Vadodara, India</p>
-          <p>Four years of fundamentals. Algorithms, systems, and the first taste of building something that outlives its demo.</p>
-        </div>
-      </li>
-
-      <li class="stop reveal">
-        <span class="stop__year">2020<i>—</i>21</span>
-        <div class="stop__body">
-          <h3>Software Engineer</h3>
-          <p class="stop__org">Mobiuso · Remote</p>
-          <p>Led a migration off on-premise servers into AWS. Wrote modular Terraform that took environment setup from <b>days down to hours</b>, then built Python analytics pipelines and event-driven REST integrations on top of it.</p>
-          <ul class="chips"><li>AWS Migration</li><li>Terraform</li><li>Python</li><li>REST</li></ul>
-        </div>
-      </li>
-
-      <li class="stop stop--turn reveal">
-        <span class="stop__year">2022<i>—</i>23</span>
-        <div class="stop__body">
-          <span class="stop__flag">the restart</span>
-          <h3>Diploma, Cloud Computing for Big Data</h3>
-          <p class="stop__org">Lambton College · Toronto, Canada</p>
-          <p>A deliberate re-specialisation in a new country: distributed storage, warehousing, and the economics of running compute at scale.</p>
-        </div>
-      </li>
-
-      <li class="stop reveal">
-        <span class="stop__year">2023</span>
-        <div class="stop__body">
-          <span class="stop__flag stop__flag--quiet">intern</span>
-          <h3>Cloud Support Engineer</h3>
-          <p class="stop__org">Arihant eSolutions · Toronto</p>
-          <p>Four months holding up client-critical EC2, S3 and RDS environments. I wrote Python automation for monitoring, reporting and resource scheduling that removed <b>35% of the manual operational work</b> — and made the case for myself in the process.</p>
-          <ul class="chips"><li>EC2</li><li>RDS</li><li>Lambda</li><li>Automation</li></ul>
-        </div>
-      </li>
-
-      <li class="stop stop--now reveal">
-        <span class="stop__year">2024<i>—</i>25</span>
-        <div class="stop__body">
-          <span class="stop__flag stop__flag--hot">the climb back</span>
-          <h3>Cloud Engineer</h3>
-          <p class="stop__org">Arihant eSolutions · Toronto</p>
-          <p>Eighteen months designing the systems I had been supporting. Serverless architecture on Lambda, S3 and DynamoDB. Glue and Airflow ETL feeding automated BI. Reusable Terraform modules. A FinOps programme that took a real bite out of a real invoice.</p>
-          <ul class="chips"><li>Serverless</li><li>Glue</li><li>Airflow</li><li>Step Functions</li><li>FinOps</li></ul>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ══ 04 · THE WORK ════════════════════════════════════════ -->
-<section class="work" id="work" data-act="dusk">
-  <span class="folio" aria-hidden="true">03</span>
-  <div class="wrap">
-    <header class="head">
-      <span class="tag">Chapter three</span>
-      <h2 class="head__title"><span class="m"><span>What I built</span></span></h2>
-      <p class="head__note">Three systems, and what they were actually for.</p>
-    </header>
-  </div>
-
-  <article class="piece">
-    <div class="wrap piece__grid">
-      <div class="piece__main">
-        <span class="piece__n">01</span>
-        <h3 class="piece__title">A pipeline that stopped<br/>needing a person</h3>
-        <p class="piece__lede">Real-estate market data arrived from Zillow&rsquo;s API in real time and had to become something a stakeholder could act on before it went stale.</p>
-        <p>Lambda handles extraction, S3 stages it across raw, refined and curated zones, Airflow on EC2 orchestrates the graph, Redshift warehouses it, and QuickSight puts it in front of the people deciding. Once it was running, nobody touched it.</p>
-        <ul class="chips"><li>Lambda</li><li>S3</li><li>Airflow</li><li>EC2</li><li>Redshift</li><li>QuickSight</li></ul>
-        <dl class="figs"><div><dt>99.8%</dt><dd>pipeline reliability</dd></div><div><dt>Zero</dt><dd>manual data handling</dd></div></dl>
-      </div>
-      <div class="piece__viz"><div class="piece__viz-in"><svg class="diagram" viewBox="0 0 420 476" role="img" aria-label="Zillow API into Lambda, S3 raw refined curated, Glue, Redshift, QuickSight, orchestrated by Airflow on EC2"><g class="edges"><path class="e" id="e0" d="M150 56 V96"/><path class="e" id="e1" d="M150 136 V176"/><path class="e" id="e2" d="M150 220 V256"/><path class="e" id="e3" d="M150 296 V336"/><path class="e" id="e4" d="M150 376 V416"/><path class="e e--ghost" id="e90" d="M300 198 H275 V116 H250"/><path class="e e--ghost" id="e91" d="M300 198 H275 V276 H250"/></g><g class="flows"><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.0s"><mpath href="#e0"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.35s"><mpath href="#e1"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#e2"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.0499999999999998s"><mpath href="#e3"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s"><mpath href="#e4"/></animateMotion></circle></g><g class="nodes"><g class="n "><rect x="50" y="16" width="200" height="40" rx="7"/><text x="150" y="34">Zillow API</text><text class="sub" x="150" y="49">source</text></g><g class="n "><rect x="50" y="96" width="200" height="40" rx="7"/><text x="150" y="114">Lambda</text><text class="sub" x="150" y="129">extract</text></g><g class="n "><rect x="50" y="176" width="200" height="44" rx="7"/><text x="150" y="196">S3</text><text class="sub" x="150" y="211">raw › refined › curated</text></g><g class="n "><rect x="50" y="256" width="200" height="40" rx="7"/><text x="150" y="274">Glue</text><text class="sub" x="150" y="289">transform</text></g><g class="n "><rect x="50" y="336" width="200" height="40" rx="7"/><text x="150" y="354">Redshift</text><text class="sub" x="150" y="369">warehouse</text></g><g class="n n--end"><rect x="50" y="416" width="200" height="40" rx="7"/><text x="150" y="434">QuickSight</text><text class="sub" x="150" y="449">decisions</text></g><g class="n n--side"><rect x="300" y="176" width="110" height="44" rx="7"/><text x="355" y="196">Airflow</text><text class="sub" x="355" y="211">on EC2</text></g></g></svg></div></div>
-    </div>
+  <article id="p-parul">
+    <span class="tag">Education · ap-south-1</span>
+    <h2>B.Tech, Computer Science</h2>
+    <p class="org">Parul University · Vadodara, India · 2016—2020</p>
+    <p>Four years of fundamentals. Algorithms, systems, and the first taste of building something that outlives its demo.</p>
+    <ul class="chips"><li>CS foundations</li><li>Python</li></ul>
   </article>
-  <article class="piece piece--flip">
-    <div class="wrap piece__grid">
-      <div class="piece__main">
-        <span class="piece__n">02</span>
-        <h3 class="piece__title">A module library<br/>people actually adopted</h3>
-        <p class="piece__lede">Every team was provisioning the same resources slightly differently, and every difference was a future incident.</p>
-        <p>I built a versioned Terraform module library with documentation worth reading and a CI pipeline that tests infrastructure code before it reaches an account. The adoption was the hard part; the modules were the easy part.</p>
-        <ul class="chips"><li>Terraform</li><li>GitHub Actions</li><li>Versioning</li><li>Infra testing</li></ul>
-        <dl class="figs"><div><dt>50%</dt><dd>faster deployment</dd></div><div><dt>40%</dt><dd>fewer configuration errors</dd></div></dl>
-      </div>
-      <div class="piece__viz"><div class="piece__viz-in"><svg class="diagram" viewBox="0 0 420 396" role="img" aria-label="A versioned Terraform module passing a CI gate then provisioning dev, stage and prod against locked state"><g class="edges"><path class="e" id="e0" d="M210 56 V106"/><path class="e" id="e1" d="M210 146 V180 H65 V216"/><path class="e" id="e2" d="M210 146 V216"/><path class="e" id="e3" d="M210 146 V180 H355 V216"/><path class="e" id="e4" d="M65 256 V292 H210 V326"/><path class="e" id="e5" d="M210 256 V326"/><path class="e" id="e6" d="M355 256 V292 H210 V326"/></g><g class="flows"><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.0s"><mpath href="#e0"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.35s"><mpath href="#e1"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#e2"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.0499999999999998s"><mpath href="#e3"/></animateMotion></circle></g><g class="nodes"><g class="n "><rect x="110" y="16" width="200" height="40" rx="7"/><text x="210" y="34">Module</text><text class="sub" x="210" y="49">versioned · documented</text></g><g class="n "><rect x="110" y="106" width="200" height="40" rx="7"/><text x="210" y="124">CI gate</text><text class="sub" x="210" y="139">plan + test</text></g><g class="n "><rect x="10" y="216" width="110" height="40" rx="7"/><text x="65" y="240">dev</text></g><g class="n "><rect x="155" y="216" width="110" height="40" rx="7"/><text x="210" y="240">stage</text></g><g class="n "><rect x="300" y="216" width="110" height="40" rx="7"/><text x="355" y="240">prod</text></g><g class="n n--end"><rect x="110" y="326" width="200" height="40" rx="7"/><text x="210" y="344">State</text><text class="sub" x="210" y="359">locked · remote</text></g></g></svg></div></div>
-    </div>
-  </article>
-  <article class="piece">
-    <div class="wrap piece__grid">
-      <div class="piece__main">
-        <span class="piece__n">03</span>
-        <h3 class="piece__title">The system that reads<br/>the invoice for you</h3>
-        <p class="piece__lede">Cloud spend is only mysterious until somebody makes every dollar traceable to an owner.</p>
-        <p>Lambda and CloudWatch stream utilisation into DynamoDB, tagging is automatically enforced so nothing is unattributable, QuickSight shows the trend, and a configurable alerting layer catches anomalous spend well before the bill arrives.</p>
-        <ul class="chips"><li>Lambda</li><li>DynamoDB</li><li>CloudWatch</li><li>QuickSight</li><li>FinOps</li></ul>
-        <dl class="figs"><div><dt>30%</dt><dd>infrastructure cost cut</dd></div><div><dt>None</dt><dd>performance traded away</dd></div></dl>
-      </div>
-      <div class="piece__viz"><div class="piece__viz-in"><svg class="diagram" viewBox="0 0 420 366" role="img" aria-label="CloudWatch metrics and tag enforcement feeding a Lambda analyser, into DynamoDB, out to alerts and a dashboard"><g class="edges"><path class="e" id="e0" d="M100 56 V90 H210 V116"/><path class="e" id="e1" d="M320 56 V90 H210 V116"/><path class="e" id="e2" d="M210 160 V206"/><path class="e" id="e3" d="M210 246 V280 H100 V306"/><path class="e" id="e4" d="M210 246 V280 H320 V306"/></g><g class="flows"><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.0s"><mpath href="#e0"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.35s"><mpath href="#e1"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#e2"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.0499999999999998s"><mpath href="#e3"/></animateMotion></circle><circle class="pk" r="2.6"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s"><mpath href="#e4"/></animateMotion></circle></g><g class="nodes"><g class="n "><rect x="10" y="16" width="180" height="40" rx="7"/><text x="100" y="34">CloudWatch</text><text class="sub" x="100" y="49">utilisation</text></g><g class="n "><rect x="230" y="16" width="180" height="40" rx="7"/><text x="320" y="34">Tag policy</text><text class="sub" x="320" y="49">enforced</text></g><g class="n "><rect x="110" y="116" width="200" height="44" rx="7"/><text x="210" y="136">Lambda</text><text class="sub" x="210" y="151">analyser</text></g><g class="n "><rect x="110" y="206" width="200" height="40" rx="7"/><text x="210" y="224">DynamoDB</text><text class="sub" x="210" y="239">attribution</text></g><g class="n n--end"><rect x="20" y="306" width="160" height="40" rx="7"/><text x="100" y="324">Alerts</text><text class="sub" x="100" y="339">anomaly</text></g><g class="n n--end"><rect x="240" y="306" width="160" height="40" rx="7"/><text x="320" y="324">QuickSight</text><text class="sub" x="320" y="339">trend</text></g></g></svg></div></div>
-    </div>
-  </article>
-</section>
 
-<!-- ══ 05 · WHAT IT MOVED — peak two ════════════════════════ -->
-<section class="moved" id="moved" data-act="dawn">
-  <span class="folio" aria-hidden="true">04</span>
-  <div class="wrap wrap--wide">
-    <header class="head head--center">
-      <span class="tag">Chapter four</span>
-      <h2 class="head__title"><span class="m"><span>What it moved</span></span></h2>
-    </header>
+  <article id="p-mobiuso">
+    <span class="tag">Role · ap-south-1</span>
+    <h2>Software Engineer</h2>
+    <p class="org">Mobiuso · Remote · Nov 2020—Nov 2021</p>
+    <p>Led a migration off on-premise servers into AWS. Wrote modular Terraform that took environment setup from <b>days down to hours</b>, then built Python analytics pipelines and event-driven REST integrations on top of it.</p>
+    <ul class="chips"><li>AWS Migration</li><li>Terraform</li><li>Python</li><li>REST</li></ul>
+  </article>
 
-    <ul class="figures">
-      <li class="fig reveal"><b data-count="25" data-suffix="%">0</b><span>lower operational cost after the serverless redesign</span></li>
-      <li class="fig reveal"><b data-count="40" data-suffix="%">0</b><span>fewer configuration errors once Terraform was standard</span></li>
-      <li class="fig reveal"><b data-count="35" data-suffix="%">0</b><span>of manual operations automated away</span></li>
-      <li class="fig reveal"><b data-count="20" data-suffix="%">0</b><span>off the monthly AWS invoice, deliberately</span></li>
-      <li class="fig reveal"><b data-count="50" data-suffix="%">0</b><span>faster to ship infrastructure</span></li>
-      <li class="fig reveal"><b data-count="99.8" data-dec="1" data-suffix="%">0</b><span>reliability on production ETL</span></li>
+  <article id="p-lambton">
+    <span class="tag">The restart · ca-central-1</span>
+    <h2>Diploma, Cloud Computing for Big Data</h2>
+    <p class="org">Lambton College · Toronto, Canada · 2022—2023</p>
+    <p>In 2022 I left a software engineering job in India, moved 12,164 km, and enrolled as a student again — a deliberate re-specialisation in distributed storage, warehousing, and the economics of running compute at scale.</p>
+    <ul class="chips"><li>Big data</li><li>Warehousing</li><li>Cloud economics</li></ul>
+  </article>
+
+  <article id="p-intern">
+    <span class="tag">Role · ca-central-1</span>
+    <h2>Cloud Support Engineer</h2>
+    <p class="org">Arihant eSolutions · Internship · Sep—Dec 2023</p>
+    <p>Four months holding up client-critical EC2, S3 and RDS environments. I wrote Python automation for monitoring, reporting and resource scheduling that removed <b>35% of the manual operational work</b> — and made the case for myself in the process.</p>
+    <ul class="chips"><li>EC2</li><li>RDS</li><li>Lambda</li><li>Automation</li></ul>
+  </article>
+
+  <article id="p-engineer">
+    <span class="tag">Role · ca-central-1 · primary</span>
+    <h2>Cloud Engineer</h2>
+    <p class="org">Arihant eSolutions · Toronto · Jan 2024—May 2025</p>
+    <p>Eighteen months designing the systems I had been supporting. Serverless architecture on Lambda, S3 and DynamoDB. Glue and Airflow ETL feeding automated BI. Reusable Terraform modules. A FinOps programme that took a real bite out of a real invoice.</p>
+    <dl class="figs">
+      <div><dt>25%</dt><dd>lower operational cost</dd></div>
+      <div><dt>40%</dt><dd>fewer config errors</dd></div>
+      <div><dt>20%</dt><dd>off the monthly invoice</dd></div>
+    </dl>
+    <ul class="chips"><li>Serverless</li><li>Glue</li><li>Airflow</li><li>Step Functions</li><li>FinOps</li></ul>
+  </article>
+
+  <article id="p-etl">
+    <span class="tag">Stack 01</span>
+    <h2>A pipeline that stopped needing a person</h2>
+    <p>Real-estate market data arrived from Zillow's API in real time and had to become something a stakeholder could act on before it went stale. Lambda handles extraction, S3 stages it across raw, refined and curated zones, Airflow on EC2 orchestrates the graph, Redshift warehouses it, and QuickSight puts it in front of the people deciding.</p>
+    <dl class="figs"><div><dt>99.8%</dt><dd>pipeline reliability</dd></div><div><dt>Zero</dt><dd>manual handling</dd></div></dl>
+    <ul class="chips"><li>Lambda</li><li>S3</li><li>Airflow</li><li>EC2</li><li>Redshift</li><li>QuickSight</li></ul>
+  </article>
+
+  <article id="p-tf">
+    <span class="tag">Stack 02</span>
+    <h2>A module library people actually adopted</h2>
+    <p>Every team was provisioning the same resources slightly differently, and every difference was a future incident. I built a versioned Terraform module library with documentation worth reading and a CI pipeline that tests infrastructure code before it reaches an account. The adoption was the hard part; the modules were the easy part.</p>
+    <dl class="figs"><div><dt>50%</dt><dd>faster deployment</dd></div><div><dt>40%</dt><dd>fewer config errors</dd></div></dl>
+    <ul class="chips"><li>Terraform</li><li>GitHub Actions</li><li>Versioning</li><li>Infra testing</li></ul>
+  </article>
+
+  <article id="p-finops">
+    <span class="tag">Stack 03</span>
+    <h2>The system that reads the invoice for you</h2>
+    <p>Cloud spend is only mysterious until somebody makes every dollar traceable to an owner. Lambda and CloudWatch stream utilisation into DynamoDB, tagging is automatically enforced so nothing is unattributable, QuickSight shows the trend, and a configurable alerting layer catches anomalous spend well before the bill arrives.</p>
+    <dl class="figs"><div><dt>30%</dt><dd>infrastructure cost cut</dd></div><div><dt>None</dt><dd>performance traded away</dd></div></dl>
+    <ul class="chips"><li>Lambda</li><li>DynamoDB</li><li>CloudWatch</li><li>QuickSight</li><li>FinOps</li></ul>
+  </article>
+
+  <article id="p-certs">
+    <span class="tag">Credentials</span>
+    <h2>Five, current</h2>
+    <ul class="certs">
+      <li><b>Solutions Architect</b><span>Amazon Web Services · Associate</span></li>
+      <li><b>Machine Learning Engineer</b><span>Amazon Web Services · Associate</span></li>
+      <li><b>Data Engineer</b><span>Amazon Web Services · Associate</span></li>
+      <li><b>Terraform</b><span>HashiCorp · Associate</span></li>
+      <li><b>Generative AI</b><span>Oracle · Professional</span></li>
     </ul>
-  </div>
-</section>
+    <p class="note">The toolkit behind them: Lambda · S3 · EC2 · Redshift · Glue · DynamoDB · CloudFormation · IAM · CloudWatch · Step Functions · API Gateway · QuickSight · Airflow · PySpark · Python · SQL · Docker · Kubernetes · CI/CD.</p>
+  </article>
 
-<!-- ══ THE BREAK — silence while the light changes ══════════ -->
-<section class="break" data-act="break" aria-hidden="true">
-  <div class="sun"></div>
-  <div class="horizon"></div>
-</section>
+  <article id="p-w1">
+    <span class="tag">Writing · Jan 2025</span>
+    <h2>From Scattered Data to Smart Insights</h2>
+    <p>Building an end-to-end AWS ETL pipeline — the architecture, the trade-offs, and what actually breaks in production.</p>
+    <a class="go" href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">Read on Medium ↗</a>
+  </article>
+  <article id="p-w2">
+    <span class="tag">Writing · Sep 2024</span>
+    <h2>Unlocking the Secrets of AI</h2>
+    <p>How benchmarks reveal the true power of large language models — and where they quietly mislead.</p>
+    <a class="go" href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">Read on Medium ↗</a>
+  </article>
+  <article id="p-w3">
+    <span class="tag">Writing · Jan 2022</span>
+    <h2>Statistics for Data Science, Part One</h2>
+    <p>The statistical groundwork every data practitioner keeps coming back to.</p>
+    <a class="go" href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">Read on Medium ↗</a>
+  </article>
 
-<!-- ══ 06 · TOOLKIT (daylight) ══════════════════════════════ -->
-<section class="toolkit" id="toolkit" data-act="day">
-  <span class="folio" aria-hidden="true">05</span>
-  <div class="wrap">
-    <header class="head">
-      <span class="tag">The toolkit</span>
-      <h2 class="head__title"><span class="m"><span>What I reach for</span></span></h2>
-    </header>
-
-    <div class="cols">
-      <div class="col reveal"><h3>AWS</h3><p>Lambda · S3 · EC2 · Redshift · Glue · DynamoDB · CloudFormation · IAM · CloudWatch · Step Functions · API Gateway · QuickSight</p></div>
-      <div class="col reveal"><h3>Data</h3><p>Apache Airflow · ETL pipelines · Data warehousing · Big-data processing · Real-time analytics · PySpark</p></div>
-      <div class="col reveal"><h3>Infrastructure</h3><p>Terraform · CloudFormation · Resource templating · Infrastructure automation · Module versioning</p></div>
-      <div class="col reveal"><h3>Delivery</h3><p>CI/CD · GitHub Actions · Jenkins · Docker · Kubernetes · Infrastructure testing</p></div>
-      <div class="col reveal"><h3>Languages</h3><p>Python · SQL · PySpark · Bash · Shell</p></div>
-      <div class="col reveal"><h3>Architecture</h3><p>System design · Cloud migration · Performance optimisation · Cost management · Event-driven design</p></div>
-    </div>
-
-    <div class="rail" aria-hidden="true">
-      <div class="rail__track">
-        <span>Lambda</span><span>Terraform</span><span>Airflow</span><span>Redshift</span><span>Glue</span><span>Step Functions</span><span>DynamoDB</span><span>PySpark</span><span>CloudFormation</span><span>API Gateway</span><span>QuickSight</span><span>S3</span><span>EC2</span><span>IAM</span><span>CloudWatch</span>
-      </div>
-    </div>
-
-    <div class="certs reveal">
-      <span class="certs__label">Certified</span>
-      <ul>
-        <li><b>Solutions Architect</b><span>AWS · Associate</span></li>
-        <li><b>Machine Learning Engineer</b><span>AWS · Associate</span></li>
-        <li><b>Data Engineer</b><span>AWS · Associate</span></li>
-        <li><b>Terraform</b><span>HashiCorp · Associate</span></li>
-        <li><b>Generative AI</b><span>Oracle · Professional</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 07 · WRITING ═════════════════════════════════════════ -->
-<section class="writing" data-act="day">
-  <span class="folio" aria-hidden="true">06</span>
-  <div class="wrap">
-    <header class="head">
-      <span class="tag">Writing</span>
-      <h2 class="head__title"><span class="m"><span>Thinking out loud</span></span></h2>
-    </header>
-    <ul class="reads">
-      <li class="reveal"><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">
-        <span class="reads__date">Jan 2025</span>
-        <span class="reads__t">From Scattered Data to Smart Insights: Build an End-to-End AWS ETL Pipeline</span>
-        <span class="reads__x">Read</span></a></li>
-      <li class="reveal"><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">
-        <span class="reads__date">Sep 2024</span>
-        <span class="reads__t">Unlocking the Secrets of AI: How Benchmarks Reveal the True Power of Large Language Models</span>
-        <span class="reads__x">Read</span></a></li>
-      <li class="reveal"><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">
-        <span class="reads__date">Jan 2022</span>
-        <span class="reads__t">Statistics for Data Science — Part One</span>
-        <span class="reads__x">Read</span></a></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ══ 08 · CONTACT — full daylight ═════════════════════════ -->
-<section class="contact" id="contact" data-act="day">
-  <span class="folio" aria-hidden="true">07</span>
-  <div class="wrap">
-    <p class="contact__status"><i></i>Open to work · Toronto or remote</p>
-    <h2 class="contact__line">
-      <span class="m"><span>Tell me what's</span></span>
-      <span class="m"><span>breaking at scale.</span></span>
-    </h2>
-    <p class="contact__sub">Cloud architecture, data engineering, MLOps. If it involves making something large behave itself, I'd like to hear about it.</p>
-
-    <a class="mail" href="mailto:hire@meetshahdev.com?subject=Let%27s%20talk">
-      <span>hire@meetshahdev.com</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19L19 5M9 5h10v10"/></svg>
-    </a>
-
-    <ul class="elsewhere">
+  <article id="p-contact">
+    <span class="tag">Status · available</span>
+    <h2>Tell me what's breaking at scale</h2>
+    <p>Cloud architecture, data engineering, MLOps. Toronto or remote. If it involves making something large behave itself, I'd like to hear about it.</p>
+    <a class="go go--big" href="mailto:hire@meetshahdev.com?subject=Let%27s%20talk">hire@meetshahdev.com ↗</a>
+    <ul class="links">
       <li><a href="https://linkedin.com/in/meetjain" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="https://github.com/MeetJainAi" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://medium.com/@meetjain.ai" target="_blank" rel="noopener">Medium</a></li>
       <li><a href="tel:+16479893784">+1 647 989 3784</a></li>
     </ul>
+  </article>
+</div>
+
+<noscript>
+  <div class="fallback">
+    <h1>Meet Shah — AWS Cloud Architect, Toronto</h1>
+    <p>This portfolio is an interactive map and needs JavaScript. The short version:
+    AWS Certified Solutions Architect with five current certifications. Software Engineer at
+    Mobiuso (2020—21), then moved from India to Toronto, retrained at Lambton College, interned
+    at Arihant eSolutions in 2023 and was designing their cloud architecture by 2024 —
+    cutting operational cost 25% and configuration errors 40%.</p>
+    <p><a href="mailto:hire@meetshahdev.com">hire@meetshahdev.com</a> ·
+       <a href="https://linkedin.com/in/meetjain">LinkedIn</a> ·
+       <a href="https://github.com/MeetJainAi">GitHub</a></p>
   </div>
+</noscript>
 
-  <footer class="foot">
-    <div class="divider" aria-hidden="true">
-      <i></i>
-      <svg class="mark" viewBox="0 0 64 40"><defs><clipPath id="mkClipFoot"><rect class="mark__rise" x="0" y="40" width="64" height="40"/></clipPath></defs><line class="mark__rule" x1="0" y1="28" x2="64" y2="28"/><circle class="mark__ring" cx="32" cy="28" r="11"/><circle class="mark__fill" cx="32" cy="28" r="11" clip-path="url(#mkClipFoot)"/></svg>
-      <i></i>
-    </div>
-    <div class="foot__wordmark" aria-hidden="true"><span>MEET SHAH</span></div>
-    <div class="wrap foot__row">
-      <span>© <span id="yr">2026</span> Meet Shah</span>
-      <span>Designed and built in Toronto</span>
-    </div>
-  </footer>
-</section>
-
-</main>
-
-<script src="js/vendor/gsap.min.js" defer></script>
-<script src="js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="js/sky.js" defer></script>
-<script src="js/hero.js" defer></script>
-<script src="js/orb.js" defer></script>
-<script src="js/main.js" defer></script>
+<script src="js/world.js" defer></script>
+<script src="js/map.js" defer></script>
+<script src="js/app.js" defer></script>
 </body>
 </html>
