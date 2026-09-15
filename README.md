@@ -101,16 +101,14 @@ python3 -m http.server 8000   # → http://localhost:8000
 
 ## Type
 
-**Bodoni Moda** for display — a true Didone. Stroke contrast is the single
-strongest "expensive" signal in typography, and Bodoni Moda carries an
-optical-size axis, so at display sizes the hairlines thin out on their own
-(`font-variation-settings: "opsz" 96`). **Inter** for reading. **JetBrains
-Mono** for the machine voice: labels, coordinates, timestamps. The tension
-between a fashion-plate serif and a developer's monospace is the point.
+**Bricolage Grotesque** for display — variable across weight, width and
+optical size, so headlines can be genuinely heavy (800) and narrow (wdth 88)
+without a second file. **Instrument Serif italic** does exactly one job: the
+emphasis inside a headline. **Inter** for reading, **JetBrains Mono** for the
+machine voice.
 
-All four faces are **self-hosted** (`fonts/`, latin subsets, ~180 KB total)
-and the two used above the fold are preloaded. No third-party request stands
-between the reader and the first word.
+Self-hosted (`fonts/`, latin subsets, 240 KB) with the display and body faces
+preloaded. No third-party request stands between the reader and the first word.
 
 ## Identity
 
