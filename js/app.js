@@ -38,6 +38,18 @@
     if (e.key === 'Escape') close();
   });
 
+  // any input skips the opening beat — nobody should have to wait twice
+  var curtain = document.getElementById('curtain');
+  function dropCurtain() {
+    // skipping the beat has to bring the chrome with it — otherwise the
+    // reader trades a 2.5s title for 2.9s of an empty map.
+    document.body.classList.add('skipped');
+    if (curtain) curtain.style.animationDelay = '0s';
+  }
+  ['pointerdown','wheel','keydown','touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, dropCurtain, { once: true, passive: true });
+  });
+
   MAP.init(document.getElementById('stage'), open);
 
   // the index flies the camera rather than scrolling anything

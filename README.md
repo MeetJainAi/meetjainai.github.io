@@ -43,6 +43,22 @@ fonts/            Bricolage Grotesque · Inter · JetBrains Mono · Instrument S
 python3 -m http.server 8000   # → http://localhost:8000
 ```
 
+## Craft
+
+- **The opening beat.** The name states itself once over the assembling map,
+  then gets out of the way at 2.5s. Any input skips it — and skipping pulls the
+  chrome forward with it, so you never trade a title for an empty map.
+- **The graph draws itself in.** Nodes arrive in narrative order; an edge only
+  appears once both its ends exist.
+- **Edges bow.** A straight diagonal reads as a generic force graph; a bowed
+  quadratic reads as a drawn diagram. Traffic rides the curve, not a chord.
+- **Hover focuses the neighbourhood** and dims everything else — the reason to
+  show a graph at all rather than a list.
+- **Depth**: three parallax star layers and four soft nebulae, well behind the
+  graph and moving at a fraction of the camera.
+- **The migration wire is the set piece** — a glowing, dashed, animated arc
+  carrying three packets and its own distance label.
+
 ## Notes
 
 - **Regions are derived, not drawn.** Each region box is computed from the nodes
